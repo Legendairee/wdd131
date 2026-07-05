@@ -118,7 +118,7 @@ main {
     font-size: 16px;
     padding: 10px;
     border-radius: 12px 12px 0 0;
-    border-radius: 12px 12px 0 0;
+   
     
 }
 
@@ -158,13 +158,8 @@ main {
     gap: 20px;
     margin-top: 15px;
     padding: 20px;
+    line-height: 1.6rem;
 
-}
-
-.country-flag {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
 }
 
 .country {
@@ -185,10 +180,6 @@ main {
     height: 1.2px;
     background-color: #969595;
     border-radius: 1.2px;
-}
-
-.about-country {
-    line-height: 1.6rem;
 }
 
 .country-flag {
