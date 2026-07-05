@@ -20,15 +20,15 @@ body {
     flex-direction: column;
 }
 
-header h1 {
+header p {
     color: #eee;
-    padding: 1rem;
+    text-align: center;
+    margin-top: 20px;
 }
 
 header nav {
     background-color: #000;
     margin-top: 20px;
-    padding: 1rem;
     justify-content: center;
     
 
