@@ -1,6 +1,4 @@
 :root {
-    /* --heading-font: "Inter", sans-serif;
-    --font-body: 'Roboto', sans-serif; */
     --primary-color: rgba(29, 77, 114, 1);
     --secondary-color: rgba(51, 51, 51, 1);
     --navigation-background-color: #d0cfcf;
@@ -8,22 +6,6 @@
     --border-color: #969595;
     --card-background-color: #f0efef;
 }
-
-/* @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400 700;
-    font-display: swap;
-    src: url('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-A.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400 500;
-    font-display: swap;
-    src: url('https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Me5WZLCzYlKw.woff2') format('woff2');
-} */
 
 * {
     margin: 0;
@@ -33,7 +15,6 @@
 
 body {
     max-width: 100%;
-    /* font-family: var(--font-body) */
 }
 
  header {
@@ -44,7 +25,6 @@ body {
 }
 
 #course-title {
-    /* font-family: var(--heading-font); */
     font-weight: 700;
     color: var(--text-color);
     font-size: 30px;
@@ -97,7 +77,6 @@ main {
 }
 
  main h1 {
-    /* font-family: var(--heading-font); */
     grid-column: 1 / -1;
     text-align: center;
     font-size: 30px;
