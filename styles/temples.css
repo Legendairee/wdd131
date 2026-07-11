@@ -1,5 +1,19 @@
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../fonts/Roboto/roboto-regular.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../fonts/Roboto/roboto-bold.woff2') format('woff2');
+}
+
 :root {
-    --font-heading: 'Inter', sans-serif;
     --font-body: 'Roboto', sans-serif;
     --primary-color: rgba(29, 77, 114, 1);
     --text-color: #eee;
@@ -33,7 +47,7 @@ header {
 }
 
 header span {
-    font-family: var(--font-heading);
+    font-family: var(--font-body);
     font-weight: 600;
     color: var(--text-color);
     font-size: 1.2rem;
@@ -44,19 +58,8 @@ header span {
     border: 0;
     background: none;
     color: var(--text-color);
-    font-size: 30px;
-    /* position: absolute;
-        top: 1rem;
-        right: 1rem; */
+    font-size: 26px;
     margin-left: auto;
-}
-
-#menu::before {
-    content: "☰";
-}
-
-#menu.open::before {
-    content: "❌";
 }
 
 nav {
@@ -114,7 +117,7 @@ main {
 }
 
 main h1 {
-    font-family: var(--font-heading);
+    font-family: var(--font-body);
     grid-column: 1 / -1;
     text-align: center;
     font-size: 1.2rem;

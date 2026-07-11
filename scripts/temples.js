@@ -14,4 +14,10 @@ const navigation = document.querySelector('.navigation');
 hamButton.addEventListener('click', () => {
     navigation.classList.toggle('open');
     hamButton.classList.toggle('open');
+
+    if (hamButton.classList.contains('open')) {
+        hamButton.textContent = '❌';
+    } else {
+        hamButton.textContent = '☰';
+    }
 });
