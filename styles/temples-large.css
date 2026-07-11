@@ -1,0 +1,49 @@
+@media only screen and (min-width: 760px) {
+    main {
+        width: 1100px;
+    }
+
+    header span {
+        font-size: 1.5rem;
+    }
+
+    .navigation {
+        flex-direction: row;
+        width: 50%;
+        background-color: transparent;
+        top: 1rem;
+        right: 1rem;
+        border-top: none;
+    }
+
+    .navigation a {
+        display: block;
+        font-size: 1.1rem;
+        flex: 1 1 100%;
+    }
+
+    .navigation a.active::before {
+        left: -2px;
+    }
+
+    body:has(.navigation.open) main,
+    .navigation ~ main {
+        margin-top: 50px;
+    }
+
+    main h1 {
+        font-size: 1.5rem;
+    }
+
+    #menu {
+        display: none;
+    }
+
+    nav {
+        display: block;
+    }
+
+    footer {
+        font-size: 1.1rem;
+    }
+}
