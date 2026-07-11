@@ -59,6 +59,10 @@ header span {
     content: "❌";
 }
 
+nav {
+    display: flex;
+}
+
 .navigation {
     display: flex;
     position: absolute;
