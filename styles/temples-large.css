@@ -22,10 +22,6 @@
         flex: 1 1 100%;
     }
 
-    .navigation a.active::before {
-        left: -2px;
-    }
-
     body:has(.navigation.open) main,
     .navigation ~ main {
         margin-top: 50px;
