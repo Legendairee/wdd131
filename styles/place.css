@@ -59,13 +59,13 @@ main {
 }
 
 picture {
-    background-color: var(--primary-color);
     width: 100%;
 }
 
 picture img {
     width: 100%;
     height: auto;
+    border-bottom: 5px solid var(--primary-color);
 }
 
 section h2 {
