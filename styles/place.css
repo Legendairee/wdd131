@@ -1,0 +1,258 @@
+:root {
+    --primary-color: #056110;
+    --secondary-color: #fff;
+    --header-footer-text-color: #fff;
+    --font-family: "Roboto", sans-serif;
+    --main-text-color: #323232;
+    --main-background-color: #ffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 100%;
+    display: grid;
+    grid-template: 120px 1fr 80px / 1fr;
+    min-height: 100vh;
+    margin: 0 auto;
+    gap: 0;
+}
+
+/* ======= This is my header ======== */
+
+header {
+    display: flex;
+    background-color: var(--primary-color);
+    padding: 0 10px;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 5px solid var(--secondary-color);
+}
+
+header h1 {
+    color: var(--header-footer-text-color);
+    font-family: var(--font-family);
+    font-size: 2.2rem;
+    text-align: center;
+    padding: 5px 0;
+    font-weight: 600;
+}
+
+/* ======= This is my main ======= */
+
+main {
+    width: 100%;
+    margin: 0 auto;
+    border-top: 10px solid var(--primary-color);
+}
+
+.main-container {
+    width: 100%;
+    display: grid;
+    grid-template: auto / 1fr;
+    place-items: center;
+    justify-content: center;
+}
+
+picture {
+    background-color: var(--primary-color);
+    width: 100%;
+}
+
+picture img {
+    width: 100%;
+    height: auto;
+}
+
+section h2 {
+    font-size: 1.5rem;
+    font-family: var(--font-family);
+    margin-bottom: 30px;
+}
+
+.weather {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.weather::after {
+    content: "⛅";
+    position: absolute;
+    display: none;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 60px;
+}
+
+.card {
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.unordered-list {
+    list-style-type: none;
+    padding-top: 20px;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.unordered-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.label {
+    font-size: 0.9rem;
+    text-align: right;
+    font-family: var(--font-family);
+    flex-basis: 100px;
+    min-width: 150px;
+}
+
+.value {
+    color: var(--main-text-color);
+    flex-basis: 300px;
+    min-width: 100px;
+}
+
+.weather-card {
+    margin-bottom: 20px;
+    border-top: 1px solid #436d3e32;
+}
+
+.weather-card img {
+    width: 60px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* ========== This is my footer ========= */
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    background-color: var(--primary-color);
+    padding: 10px;
+    margin: 0;
+}
+
+footer p {
+    font-family: var(--font-family);
+    color: var(--header-footer-text-color);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+
+
+/* ========= This is my media query ========== */
+
+@media only screen and (min-width: 768px) {
+
+    .main-container {
+        position: relative;
+        margin: 0 auto;
+    }
+
+    picture {
+        position: relative;
+        display: block;
+        width: 100%;
+    }
+
+    picture img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .data-card {
+        position: absolute;
+        top: 20px;
+        left: 10px;
+        background-color: rgba(255, 255, 255, 0.95);
+        width: 25%;
+    }
+
+    .weather-card {
+        position: absolute;
+        bottom: -10px;
+        right: 10px;
+        background-color: rgba(255, 255, 255, 0.95);
+        width: 25%;
+    }
+
+    .weather {
+        justify-content: left;
+    }
+
+    .weather::after {
+        display: block;
+        top: 2px;
+        left: 83%;
+        font-size: 25px;
+    }
+
+    .weather-card h2 {
+        background-color: #036914e7;
+        color: white;
+        font-size: 1.4rem;
+        width: 100%;
+        margin-top: -10px;
+        margin-left: -50px;
+    }
+
+    .data-card h2 {
+        background-color: #036914e7;
+        color: white;
+        font-size: 1.4rem;
+        width: 100%;
+        padding: 10px;
+        margin-top: -10px;
+        margin-left: -50px;
+    }
+
+    .unordered-list {
+        width: 100%;
+        margin-left: -52px;
+        padding-top: 5px;
+    }
+
+    .unordered-list li {
+        font-size: 0.9rem;
+    }
+
+    .label {
+        min-width: 120px;
+        font-size: 0.8rem;
+        display: block;
+    }
+
+    .weather-card img {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 333px) {
+    .label {
+        min-width: 129px;
+    }
+}
