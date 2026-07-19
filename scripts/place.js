@@ -11,9 +11,9 @@ const countryData = {
 };
 
 const weatherData = {
-    temperature: "10 °C",
+    temperature: "28 °C",
     condition: "Partly Cloudy",
-    wind: "5 km/h",
+    wind: "6 km/h",
     windChill: "N/A"
 };
 
