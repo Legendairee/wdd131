@@ -41,17 +41,21 @@ function pageData() {
     document.getElementById("weather-value3").textContent = weatherData.wind;
 
 
-    const temp = 28;
-    const wind = 6;
+    const temp = parseFloat(weatherData.temperature);
+    const wind = parseFloat(weatherData.wind);
+
+    let windChillValue = "N/A";
 
     if (ifCalculateWindChill(temp, wind)) {
         const chill = calculateWindChill(temp, wind);
-        weatherData.windChill = chill.toFixed(1) + " °C";
+        windChillValue = chill.toFixed(1) + " °C";
     } else {
-        weatherData.windChill = "N/A";
+        weatherData.windChillValue;
     }
 
-    document.getElementById("weather-value4").textContent = weatherData.windChill;
+    document.getElementById("weather-value4").textContent = windChillValue;
+
+    weatherData.windChill = windChillValue;
 }
 
 
