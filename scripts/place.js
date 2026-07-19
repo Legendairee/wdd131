@@ -1,4 +1,4 @@
-
+// ======= Data object of country and weather =======
 const countryData = {
     area: "923,769 sq km",
     population: "242,460,772",
@@ -17,14 +17,17 @@ const weatherData = {
     windChill: "N/A"
 };
 
+// ===== The major calculation =====
 function calculateWindChill(temp, wind) {
     return 13.12 + 0.6215 * temp - 11.37 * Math.pow(wind, 0.16) + 0.3965 * temp * Math.pow(wind, 0.16);
 }
+
 
 function ifCalculateWindChill(temp, wind) {
     return temp <= 10 && wind > 4.8;
 }
 
+// ===== The main function of the web page ======
 function pageData() {
 
     document.getElementById("data-value1").textContent = countryData.area;
@@ -61,6 +64,8 @@ function pageData() {
 
 document.addEventListener("DOMContentLoaded", pageData);
 
+
+// ====== The footer current year and date last modified =====
 const currentYear = document.querySelector("#current-year");
 const lastModified = document.querySelector("#lastmodified");
 
