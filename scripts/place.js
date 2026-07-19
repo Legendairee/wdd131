@@ -41,8 +41,8 @@ function pageData() {
     document.getElementById("weather-value3").textContent = weatherData.wind;
 
 
-    const temp = 10;
-    const wind = 5;
+    const temp = 28;
+    const wind = 6;
 
     if (ifCalculateWindChill(temp, wind)) {
         const chill = calculateWindChill(temp, wind);
