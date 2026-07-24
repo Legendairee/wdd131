@@ -36,7 +36,7 @@ header span {
     font-family: var(--font-body);
     font-weight: 600;
     color: var(--text-color);
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     display: block;
 }
 
@@ -82,6 +82,16 @@ nav {
     text-decoration: underline;
 }
 
+.navigation a.active {
+    background-color: #1e90ff;
+    color: white;
+    font-weight: 600;
+}
+
+.navigation.open a.active {
+    background-color: #1e90ff;
+}
+
 .open a {
     display: block;
 }
@@ -107,7 +117,7 @@ main h1 {
     font-family: var(--font-body);
     grid-column: 1 / -1;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     font-weight: 600;
 }
 
@@ -119,21 +129,54 @@ main h1 {
     margin-top: 20px;
 }
 
-.gallery {
+section {
     overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 100%;
+    padding: 1rem;
+    margin-top: 30px;
     margin-bottom: 20px;
+    background-color: #e1e0e09a;
+    border: 1px solid #c8c7c7d5;
 }
 
-.gallery img {
+section p {
+    font-size: 0.8rem;
+    width: 100%;
+    word-break: break-word;
+    hyphens: auto;
+    text-align: center;
+}
+
+section h2 {
+    font-size: 1.2rem;
+    width: 100%;
+    word-break: break-word;
+    hyphens: auto;
+    text-align: center;
+}
+
+.label {
+    font-size: 0.65rem;
+    color: #49008a;
+}
+
+section img {
     width: 100%;
     height: auto;
     object-fit: cover;
+    margin-top: 20px;
     object-position: center;
+    box-shadow: 3px 0 3px 4px rgba(157, 156, 156, 0.747);
+    transition: box-shadow 0.3s ease;
+}
+
+section img:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+    transform: translateY(-4px);
 }
 
 /* ===========This is my Footer CSS rule ========== */
@@ -151,4 +194,101 @@ footer {
 footer p {
     color: var(--text-color);
     text-align: center;
+}
+
+
+
+/* =========== Media Queries ============== */
+
+@media only screen and (min-width: 550px) {
+    .figure-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    section p {
+        font-size: 0.8rem;
+    }
+
+    .label {
+        font-size: 0.65rem;
+    }
+
+    section h2 {
+        font-size: 1.2rem;
+    }
+
+    header span {
+        font-size: 1.6rem;
+    }
+
+    main h1 {
+        font-size: 1.7rem;
+    }
+
+}
+
+
+
+@media only screen and (min-width: 895px) {
+    main {
+        width: 100%;
+        max-width: 1100px;
+    }
+
+    header span {
+        font-size: 1.8rem;
+    }
+
+    .navigation {
+        flex-direction: row;
+        position: static;
+        width: auto;
+        background-color: transparent;
+        top: 1rem;
+        right: 1rem;
+        border-top: none;
+    }
+
+    .navigation a {
+        display: block;
+        font-size: 1.1rem;
+        flex: 1 1 100%;
+    }
+
+    .figure-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    body:has(.navigation.open) main,
+    .navigation ~ main {
+        margin-top: 50px;
+    }
+
+    main h1 {
+        font-size: 2rem;
+    }
+
+    #menu {
+        display: none;
+    }
+
+    nav {
+        display: block;
+    }
+
+    section p {
+        font-size: 0.9rem;
+    }
+
+    .label {
+        font-size: 0.8rem;
+    }
+
+    section h2 {
+        font-size: 1.35rem;
+    }
+
+    footer {
+        font-size: 1rem;
+    }
 }

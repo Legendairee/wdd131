@@ -1,6 +1,7 @@
 @media only screen and (min-width: 760px) {
     main {
-        width: 1100px;
+        width: 100%;
+        max-width: 1100px;
     }
 
     header span {
@@ -8,8 +9,9 @@
     }
 
     .navigation {
+        position: static;
         flex-direction: row;
-        width: 50%;
+        width: auto;
         background-color: transparent;
         top: 1rem;
         right: 1rem;
