@@ -83,13 +83,13 @@ nav {
 }
 
 .navigation a.active {
-    background-color: #1e90ff;
+    background-color: #1059a2;
     color: white;
     font-weight: 600;
 }
 
 .navigation.open a.active {
-    background-color: #1e90ff;
+    background-color: #1059a2;
 }
 
 .open a {

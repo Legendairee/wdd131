@@ -199,7 +199,7 @@ document.querySelectorAll(".navigation a").forEach(navLink => {
     navLink.addEventListener("click", (event) => {
         event.preventDefault();
 
-        const filterChoice = navLink.getAttribute("filter-info");
+        const filterChoice = navLink.getAttribute("data-filter");
  
         document.querySelectorAll(".navigation a").forEach(activeNav => activeNav.classList.remove("active"));
         navLink.classList.add("active");
