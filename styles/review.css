@@ -1,0 +1,139 @@
+:root {
+    --font-family: 'Roboto', system-ui, sans-serif;
+    --primary-color: #4c1d95;
+    --primary-hover: #6d28d9;
+    --text-primary: #1e2937;
+    --bg-body-gradient-start: #f8fafc;
+    --bg-body-gradient-end: #e0f2fe;
+    --white: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: var(--font-family);
+    background: linear-gradient(135deg, var(--bg-body-gradient-start) 0%, var(--bg-body-gradient-end) 100%);
+    padding: 12px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-primary);
+}
+
+.form-container {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+    width: 100%;
+    overflow: hidden;
+}
+
+/* This is my Header section */
+header {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 20px 16px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* This is my Main section */
+main {
+    padding: 24px 20px;
+    text-align: center;
+}
+
+main p {
+    font-size: 1.05em;
+    margin: 20px 0;
+}
+
+.submit-btn {
+    background: var(--primary-color);
+    display: inline-block;
+    color: var(--white);
+    border: none;
+    padding: 16px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.submit-btn:hover {
+    background: var(--primary-hover);
+}
+
+/* This is my footer section */
+footer {
+    background: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 16px;
+    font-size: 16px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* This is my media query */
+
+@media (min-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    .form-container {
+        max-width: 620px;
+        border-radius: 16px;
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+            0 8px 10px -6px rgb(0 0 0 / 0.1);
+    }
+
+    header {
+        padding: 24px 30px;
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+
+    main {
+        padding: 50px;
+    }
+
+    main p {
+        font-size: 1.2em;
+        margin: 30px 0;
+    }
+
+    .submit-btn {
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgb(124 58 237 / 0.3);
+    }
+
+    footer {
+        padding: 20px;
+        font-size: 18px;
+    }
+}
