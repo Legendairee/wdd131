@@ -202,6 +202,10 @@ footer {
     width: 100%;
 }
 
+footer p {
+    margin: 7px 0;
+}
+
 /* This is my media query */
 
 @media (min-width: 768px) {
