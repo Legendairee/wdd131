@@ -3,6 +3,7 @@
     --primary-color: #4c1d95;
     --primary-hover: #6d28d9;
     --text-primary: #1e2937;
+    --text-p: #34445b;
     --bg-body-gradient-start: #f8fafc;
     --bg-body-gradient-end: #e0f2fe;
     --white: #fff;
@@ -55,8 +56,15 @@ main {
 }
 
 main p {
-    font-size: 1.05em;
+    font-size: 14px;
     margin: 20px 0;
+    color: var(--text-p);
+    
+}
+
+#reviewCount {
+    font-weight: 700;
+    color: var(--text-primary);
 }
 
 .submit-btn {
@@ -118,13 +126,14 @@ footer p {
     }
 
     main p {
-        font-size: 1.2em;
+        font-size: 18px;
         margin: 30px 0;
     }
 
     .submit-btn {
         padding: 20px;
         border-radius: 10px;
+        font-size: 18px;
     }
 
     .submit-btn:hover {
