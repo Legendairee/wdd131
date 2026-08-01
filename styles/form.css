@@ -5,14 +5,14 @@
     --accent-color: #7c3aed;
     --accent-focus: rgba(124, 58, 237, 0.15);
     --text-primary: #1e2937;
-    --text-label: #334155;
-    --small-text: #3b5273;
+    --text-label: #11233c;
+    --small-text: #1e293b;
     --bg-body-gradient-start: #f8fafc;
     --bg-body-gradient-end: #e0f2fe;
     --border-color: #e2e8f0;
     --star-default: #010407;
     --star-active: #fbbf24;
-    --white: #fff;
+    --white: #ffffff;
 }
 
 * {
@@ -44,7 +44,7 @@ body {
 /* This is my Header section */
 header {
     background: var(--primary-color);
-    color: white;
+    color: var(--white);
     padding: 20px 16px;
     text-align: center;
 }
@@ -71,8 +71,14 @@ main {
     font-size: 14px;
 }
 
+.required {
+    color: #94062f;
+    font-weight: bold;
+    margin-left: 2px;
+}
+
 .form-group small {
-    font-weight: 400;
+    font-weight: 500;
     color: var(--small-text);
 }
 
@@ -161,7 +167,7 @@ main {
     flex-direction: column;
     align-items: center;
     font-size: 15px;
-    color: #475569;
+    color: var(--small-text);
     cursor: pointer;
     line-height: 3;
 }
@@ -177,7 +183,7 @@ main {
 
 .submit-btn {
     background: var(--primary-color);
-    color: white;
+    color: var(--white);
     border: none;
     padding: 14px 20px;
     font-size: 16px;
@@ -195,7 +201,7 @@ main {
 /* This is my footer section */
 footer {
     background: var(--primary-color);
-    color: white;
+    color: var(--white);
     text-align: center;
     padding: 16px;
     font-size: 15px;
