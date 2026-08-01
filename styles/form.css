@@ -63,7 +63,14 @@ main {
     margin-bottom: 20px;
 }
 
-.form-group label {
+.border-none {
+    border: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.form-group label,
+.form-group legend {
     display: block;
     font-weight: 600;
     margin-bottom: 6px;
@@ -242,7 +249,8 @@ footer p {
         margin-bottom: 28px;
     }
 
-    .form-group label {
+    .form-group label,
+    .form-group legend {
         font-size: 15px;
         margin-bottom: 8px;
     }
