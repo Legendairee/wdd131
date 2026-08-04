@@ -204,6 +204,12 @@ main {
     box-shadow: 0 0 0 3px var(--accent-focus);
 }
 
+.required {
+    color: #94062f;
+    font-weight: bold;
+    margin-left: 4px;
+}
+
 /* ========== RECIPE CARDS ========== */
 .featured {
     padding: 2rem 5%;
@@ -229,6 +235,11 @@ main {
 
 .recipe-card:hover {
     transform: translateY(-5px);
+}
+
+.recipe-region {
+    font-size: 0.9rem;
+    color: #555;
 }
 
 .recipe-card img {
@@ -269,10 +280,32 @@ main {
     white-space: nowrap;
 }
 
+.toggle-ingredients-btn {
+    background: transparent;
+    border: 1.5px solid var(--primary-green);
+    color: var(--primary-green);
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0.8rem 0 0.4rem 0;
+    align-self: flex-start;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.toggle-ingredients-btn:hover {
+    background-color: var(--primary-green);
+    color: #fff;
+}
+
 .ingredients-container {
-    margin: 1rem 0;
-    border-top: 1px solid #eee;
-    padding-top: 1rem;
+    margin: 0.6rem 0 1rem;
+    border-top: 1px dashed #ddd;
+    padding-top: 0.8rem;
+    background-color: #fcfcfc;
+    padding: 0.8rem;
+    border-radius: 6px;
 }
 
 .ingredients-title {
@@ -291,6 +324,35 @@ main {
 .ingredients-list li {
     margin-bottom: 0.4rem;
     line-height: 1.4;
+}
+
+.ingredients-container.hidden {
+    display: none;
+}
+
+.instructions-container {
+    margin: 0.8rem 0 1.2rem;
+    border-top: 1px solid #eee;
+    padding-top: 0.8rem;
+}
+
+.instructions-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--primary-green);
+    margin-bottom: 0.5rem;
+}
+
+.instructions-list {
+    padding-left: 1.2rem;
+    font-size: 0.88rem;
+    color: #444;
+}
+
+.instructions-list li {
+    margin-bottom: 0.4rem;
+    line-height: 1.45;
 }
 
 .category-name {
