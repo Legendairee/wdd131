@@ -1,0 +1,448 @@
+:root {
+    --primary-green: #0F4C25;
+    --accent-yellow: #CC7A00;
+    --bg-neutral: #FAF9F6;
+    --card-bg: #FFFFFF;
+    --text-dark: #222222;
+    --heading-footer-text: #fff;
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Poppins', system-ui, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-neutral);
+    line-height: 1.6;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+header {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    gap: 20px;
+    background-color: var(--primary-green);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+    padding: 0 10px;
+    align-items: center;
+    border-bottom: 1.5px solid var(--heading-footer-text);
+}
+
+header img {
+    width: 120px;
+    height: auto;
+    font-weight: 600;
+    font-size: 1.2rem;
+    display: block;
+}
+
+#menu {
+    border: 0;
+    background: none;
+    color: var(--heading-footer-text);
+    font-size: 26px;
+    margin-left: auto;
+}
+
+nav {
+    display: flex;
+}
+
+.navigation {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    top: 5.6rem;
+    right: 0;
+    font-size: 0.9rem;
+    flex-direction: column;
+    justify-content: space-around;
+    list-style: none;
+    color: var(--heading-footer-text);
+    background-color: var(--primary-green);
+}
+
+.navigation a {
+    font-family: var(--font-body);
+    display: none;
+    padding: 0.8rem 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.navigation a:hover,
+.navigation a:focus {
+    color: var(--heading-footer-text);
+    background-color: var(--accent-yellow);
+}
+
+.open a {
+    display: block;
+}
+
+body:has(.navigation.open) main,
+.navigation ~ main {
+    margin-top: 320px;
+}
+
+main {
+    margin-bottom: 2rem;
+}
+
+/* ====================== HERO SECTION (<picture> method) ====================== */
+.hero {
+    position: relative;
+    color: white;
+    text-align: center;
+    padding: 5rem 5% 4rem;
+    overflow: hidden;
+}
+
+/* Picture container stretches to fill entire hero area */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Picture img covers background smoothly */
+.hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Dark Green Overlay for readability */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 76, 37, 0.6);
+    z-index: 2;
+}
+
+/* Content sits on top of overlay and image */
+.hero-content {
+    position: relative;
+    z-index: 3;
+    margin-top: 100px;
+}
+
+.hero h1 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn-primary {
+    background-color: var(--accent-yellow);
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Featured */
+.featured,
+.regions {
+    padding: 3rem 5%;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-green);
+    font-family: 'Playfair Display', serif;
+}
+
+.featured-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.recipe-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recipe-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.recipe-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.info {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex-grow: 1;
+}
+
+/* Regions */
+.regions-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+#featured-grid,
+#regions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.region-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 1.25rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.region-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e0;
+}
+
+.region-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    border-bottom: 2px solid var(--accent-yellow);
+    padding-bottom: 0.4rem;
+    margin: 0;
+}
+
+.region-meals-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.meals-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #2c3e50;
+}
+
+.region-meals-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.region-meals-list li {
+    font-size: 0.9rem;
+    color: #718096;
+    padding: 0.25rem 0;
+    position: relative;
+    padding-left: 1.1rem;
+}
+
+.region-meals-list li::before {
+    content: "•";
+    color: var(--accent-yellow);
+    font-weight: bold;
+    font-size: 1.1rem;
+    position: absolute;
+    left: 0;
+    top: -1px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #2c3e50;
+}
+
+.time-badge {
+    background-color: #fff3e0;
+    color: #e65100;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+/* Ingredients Section */
+.ingredients-container {
+    border-top: 1px solid #f0f0f0;
+    padding-top: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.ingredients-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #7f8c8d;
+    margin: 0 0 0.5rem 0;
+}
+
+.ingredients-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #4a5568;
+}
+
+.ingredients-list li {
+    margin-bottom: 0.35rem;
+}
+
+.category-name {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.category-items {
+    color: #718096;
+}
+
+/* View All Button */
+.btn-view-all {
+    display: block;
+    margin: 2.5rem auto 0;
+    background: none;
+    border: 2px solid var(--primary-green);
+    color: var(--primary-green);
+    padding: 0.9rem 2.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+footer {
+    background-color: var(--primary-green);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 0.8rem;
+    font-size: 14px;
+}
+
+footer p {
+    margin: 0.25rem 0;
+    color: var(--heading-footer-text);
+}
+
+/* ====================== DESKTOP ====================== */
+@media (min-width: 768px) {
+    .navigation {
+        flex-direction: row;
+        width: auto;
+        background-color: transparent;
+        top: 1rem;
+        right: 1rem;
+        border-top: none;
+    }
+
+    .navigation a {
+        display: block;
+        font-size: 1.1rem;
+        flex: 1 1 100%;
+    }
+
+    body:has(.navigation.open) main,
+    .navigation ~ main {
+        margin-top: 50px;
+    }
+
+    #menu {
+        display: none;
+    }
+
+    nav {
+        display: block;
+    }
+
+    .hero {
+        padding: 6rem 5%;
+    }
+
+    .hero h1,
+    .hero-content h1 {
+        font-size: 3.2rem;
+    }
+
+    #featured-grid,
+    #regions-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .recipe-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    footer {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    #featured-grid,
+    #regions-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

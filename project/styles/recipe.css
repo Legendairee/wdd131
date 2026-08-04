@@ -1,0 +1,449 @@
+:root {
+    --primary-green: #0F4C25;
+    --accent-yellow: #CC7A00;
+    --bg-neutral: #FAF9F6;
+    --card-bg: #FFFFFF;
+    --text-dark: #222222;
+    --accent-color: #CC7A00;
+    --accent-focus: rgba(226, 182, 6, 0.15);
+    --heading-footer-text: #fff;
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Poppins', system-ui, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-neutral);
+    line-height: 1.6;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+header {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    gap: 20px;
+    background-color: var(--primary-green);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+    padding: 0 10px;
+    align-items: center;
+    border-bottom: 1.5px solid var(--heading-footer-text);
+}
+
+header img {
+    width: 120px;
+    height: auto;
+    font-weight: 600;
+    font-size: 1.2rem;
+    display: block;
+}
+
+#menu {
+    border: 0;
+    background: none;
+    color: var(--heading-footer-text);
+    font-size: 30px;
+    margin-left: auto;
+}
+
+nav {
+    display: flex;
+}
+
+.navigation {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    top: 5.6rem;
+    right: 0;
+    font-size: 0.9rem;
+    flex-direction: column;
+    justify-content: space-around;
+    list-style: none;
+    color: var(--heading-footer-text);
+    background-color: var(--primary-green);
+}
+
+.navigation a {
+    font-family: var(--font-body);
+    display: none;
+    padding: 0.8rem 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.navigation a:hover,
+.navigation a:focus {
+    color: var(--heading-footer-text);
+    background-color: var(--accent-yellow);
+}
+
+.open a {
+    display: block;
+}
+
+body:has(.navigation.open) main,
+.navigation ~ main {
+    margin-top: 300px;
+}
+
+/* ========== MAIN CONTENT ========== */
+main {
+    margin-top: 90px;
+    flex: 1;
+    padding-bottom: 2rem;
+}
+
+/* Page Header */
+.page-header {
+    text-align: center;
+    padding: 2.5rem 5% 1rem;
+}
+
+.page-header h1 {
+    font-family: var(--font-heading);
+    color: var(--primary-green);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.page-header p {
+    color: #555;
+}
+
+/* Filters */
+.filters {
+    padding: 1.5rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#filter-form {
+    display: grid;
+    gap: 1rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.filter-group select {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.filter-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background-color: var(--accent-yellow);
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    margin-top: 30px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    justify-self: center;
+    max-width: 100%;
+}
+
+.filter-group input,
+.filter-group select {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px var(--accent-focus);
+}
+
+/* ========== RECIPE CARDS ========== */
+.featured {
+    padding: 2rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#recipes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+}
+
+.recipe-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+}
+
+.recipe-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.recipe-card .info {
+    padding: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+}
+
+.card-header h3 {
+    font-size: 1.25rem;
+    color: var(--primary-green);
+    margin: 0;
+}
+
+.time-badge {
+    background: #fff3e0;
+    color: #e65100;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.25rem 0.7rem;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.ingredients-container {
+    margin: 1rem 0;
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+}
+
+.ingredients-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #666;
+    margin-bottom: 0.6rem;
+}
+
+.ingredients-list {
+    list-style: none;
+    font-size: 0.9rem;
+}
+
+.ingredients-list li {
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+}
+
+.category-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.category-items {
+    color: #555;
+}
+
+/* Buttons */
+.card-actions {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: auto;
+    flex-wrap: wrap;
+}
+
+.plan-btn {
+    background: var(--primary-green);
+    color: white;
+    border: none;
+    padding: 0.55rem 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.plan-btn.added {
+    background: #27ae60;
+}
+
+.favorite-btn {
+    background: none;
+    border: 2px solid var(--accent-yellow);
+    color: var(--accent-yellow);
+    padding: 0.5rem 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.favorite-btn.saved {
+    background: var(--accent-yellow);
+    color: white;
+}
+
+#no-results {
+    display: none;
+    text-align: center;
+    margin-top: 2rem;
+    color: #c0392b;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.btn-view-all {
+    display: block;
+    margin: 2.5rem auto 0;
+    background: none;
+    border: 2px solid var(--primary-green);
+    color: var(--primary-green);
+    padding: 0.9rem 2.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* ========== FOOTER ========== */
+footer {
+    background-color: var(--primary-green);
+    color: white;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 0.3rem 0;
+}
+
+/* ========== DESKTOP ========== */
+
+@media screen and (min-width: 300px) {
+    .filters {
+        padding: 1rem 0.25rem;
+    }
+
+    #filter-form {
+        padding: 1rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+
+    .navigation {
+        flex-direction: row;
+        width: auto;
+        background-color: transparent;
+        top: 1rem;
+        right: 1rem;
+        border-top: none;
+    }
+
+    .navigation a {
+        display: block;
+        font-size: 1.1rem;
+        flex: 1 1 100%;
+        border: none;
+        padding: 0.5rem 0.8rem;
+    }
+
+    body:has(.navigation.open) main,
+    .navigation ~ main {
+        margin-top: 50px;
+    }
+
+
+    nav {
+        display: block;
+    }
+
+    .hero h1 {
+        font-size: 3.2rem;
+    }
+
+    footer {
+        font-size: 18px;
+    }
+
+    #menu {
+        display: none;
+    }
+
+    #filter-form {
+        grid-template-columns: 2fr 1fr 1fr;
+        align-items: end;
+    }
+
+    #filter-form button {
+        grid-column: 1/-1;
+        justify-self: center;
+        width: 50%;
+    }
+
+    #recipes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #recipes-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

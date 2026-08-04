@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Browse authentic Nigerian recipes - Jollof, Egusi, Afang and more.">
+        <meta name="author" content="Mathew Udowa Oghenemairo">
+        <title>Recipes | Nigeria Food Recipe Finder</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="styles/recipe.css">
+        <script src="scripts/recipe.js" defer></script>
+    </head>
+
+    <body>
+        <header>
+            <img src="./images/nigeria-food-logo.webp" alt="Nigeria Food Recipe Finder Logo" width="120" height="80">
+            <button type="button" id="menu">☰</button>
+            <nav>
+                <ul class="navigation">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="recipes.html">Recipes</a></li>
+                    <li><a href="my-kitchen.html">My Kitchen</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section class="page-header">
+                <h1>All Nigerian Recipes</h1>
+                <p>Search, filter and save your favourite dishes</p>
+            </section>
+
+            <section class="filters">
+                <form id="filter-form">
+                    <div class="filter-group">
+                        <label for="search">Search Delicacies</label>
+                        <input type="text" id="search" placeholder="Search by name...">
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="region">Region</label>
+                        <select id="region">
+                            <option value="all">All Regions</option>
+                            <option value="Yoruba">Yoruba</option>
+                            <option value="Igbo">Igbo</option>
+                            <option value="Hausa">Hausa</option>
+                            <option value="Calabar">Calabar</option>
+                            <option value="Urhobo">Urhobo / Isoko</option>
+                            <option value="Edo">Edo</option>
+                            <option value="Ijaw">Ijaw</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="time">Max Time</label>
+                        <select id="time">
+                            <option value="all">Any Time</option>
+                            <option value="30">Under 30 mins</option>
+                            <option value="45">Under 45 mins</option>
+                            <option value="60">Under 60 mins</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Filter Recipes</button>
+                </form>
+            </section>
+
+            <section class="featured">
+                <div class="featured-grid" id="recipes-grid"></div>
+                <button id="toggle-recipes-btn" class="btn-view-all">View All Recipes →</button>
+                <p id="no-results">
+                    Sorry, no delicacy was found. Try different Food filter.
+                </p>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; <span id="current-year"></span> Nigeria Food Recipe Finder • Lagos, Nigeria.</p>
+            <p id="lastModified"></p>
+        </footer>
+
+    </body>
+
+</html>
