@@ -120,7 +120,7 @@ main {
 .page-header h1 {
     font-family: var(--font-heading);
     color: var(--primary-green);
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     margin-bottom: 0.5rem;
 }
 
@@ -425,14 +425,17 @@ main {
 /* ========== FOOTER ========== */
 footer {
     background-color: var(--primary-green);
-    color: white;
     text-align: center;
-    padding: 1.5rem 1rem;
-    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 0;
+    font-size: 14px;
 }
 
 footer p {
-    margin: 0.3rem 0;
+    padding: 0.3rem;
+    color: var(--heading-footer-text);
 }
 
 /* ========== DESKTOP ========== */
@@ -474,6 +477,10 @@ footer p {
 
     nav {
         display: block;
+    }
+
+    .page-header h1 {
+        font-size: 2.1rem;
     }
 
     .hero h1 {

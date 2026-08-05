@@ -207,7 +207,7 @@ function renderRecipes(recipes) {
 
     container.innerHTML = displayRecipes.map(r => {
         const isInPlan = mealPlan.some(item => item.id === r.id);
-        const isSaved = favorites.includes(r.id);
+        const isSaved = favorites.some(item => item.id === r.id);  // ← New correct line
 
         let ingredientsHTML = '';
         if (r.ingredients) {
@@ -295,6 +295,76 @@ function renderRecipes(recipes) {
     });
 }
 
+
+// ========== RENDER SUBMITTED RECIPES ==========
+function renderSubmittedRecipes() {
+    const container = document.getElementById('submitted-grid');
+    const emptyMsg = document.getElementById('empty-submitted');
+    const submitted = getSubmittedRecipes();
+
+    if (submitted.length === 0) {
+        container.innerHTML = '';
+        emptyMsg.style.display = 'block';
+        return;
+    }
+
+    emptyMsg.style.display = 'none';
+
+    container.innerHTML = submitted.map(r => `
+        <div class="recipe-card">
+            <img src="${r.img}" alt="${r.title}" loading="lazy">
+            <div class="info">
+                <div class="card-header">
+                    <h3>${r.title}</h3>
+                    <span class="time-badge">⏱️ ${r.time} mins</span>
+                </div>
+                <p class="recipe-region"><strong>Region:</strong> ${r.region}</p>
+
+                <div class="ingredients-container">
+                    <h4 class="ingredients-title">Ingredients</h4>
+                    <ul class="ingredients-list">
+                        ${Object.entries(r.ingredients).map(([category, items]) => `
+                            <li>
+                                <span class="category-name">${category}:</span>
+                                <span class="category-items">${items.join(', ')}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+
+                ${r.instructions && r.instructions.length > 0 ? `
+                    <div class="instructions-container">
+                        <h4 class="instructions-title">Instructions</h4>
+                        <ol class="instructions-list">
+                            ${r.instructions.map(step => `<li>${step}</li>`).join('')}
+                        </ol>
+                    </div>
+                ` : ''}
+
+                <div class="card-actions">
+                    <button class="delete-btn" data-id="${r.id}">
+                        Delete Recipe
+                    </button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    // Delete functionality
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const id = Number(e.target.dataset.id);
+            if (confirm('Are you sure you want to delete this recipe?')) {
+                const updated = getSubmittedRecipes().filter(item => item.id !== id);
+                saveSubmittedRecipes(updated);
+                renderSubmittedRecipes();
+            }
+        });
+    });
+}
+
+
+
 // ========== TOGGLE FUNCTION (Mobile) ==========
 function toggleRecipes() {
     showAllRecipes = !showAllRecipes;
@@ -320,14 +390,21 @@ function toggleMealPlan(id) {
     renderRecipes(currentFiltered);
 }
 
-// ========== FAVORITES ==========
+// ========== FAVORITES (store full recipe) ==========
 function toggleFavorite(id) {
-    let favorites = getFavorites();
-    if (favorites.includes(id)) {
-        favorites = favorites.filter(favId => favId !== id);
+    let favorites = getFavorites();          // This will now store full objects
+    const recipe = allRecipes.find(r => r.id === id);
+
+    if (!recipe) return;
+
+    const exists = favorites.some(item => item.id === id);
+
+    if (exists) {
+        favorites = favorites.filter(item => item.id !== id);
     } else {
-        favorites.push(id);
+        favorites.push(recipe);               // Store the full recipe object
     }
+
     saveFavorites(favorites);
     renderRecipes(currentFiltered);
 }
