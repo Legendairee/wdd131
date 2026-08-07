@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
+    <!-- 
+  ======================================================
+  Recipes Page | Nigeria Food Recipe Finder
+  Users can search and filter authentic Nigerian recipes
+  by Cuisine name, region and cooking time.
+  ======================================================
+-->
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Browse authentic Nigerian recipes - Jollof, Egusi, Afang and more.">
+        <meta name="description" content="Browse authentic Nigerian recipes for Jollof, Egusi, Afang and more.">
         <meta name="author" content="Mathew Udowa Oghenemairo">
         <title>Recipes | Nigeria Food Recipe Finder</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -12,14 +19,17 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap"
             rel="stylesheet">
-        <link rel="stylesheet" href="styles/recipe.css">
-        <script src="scripts/recipe.js" defer></script>
+        <link rel="stylesheet" href="styles/recipes.css">
+        <script src="scripts/recipes.js" defer></script>
     </head>
 
     <body>
+
+        <!-- ======== This is my Header section with the navigation menu ======== -->
         <header>
             <img src="./images/nigeria-food-logo.webp" alt="Nigeria Food Recipe Finder Logo" width="120" height="80">
             <button type="button" id="menu">☰</button>
+
             <nav>
                 <ul class="navigation">
                     <li><a href="index.html">Home</a></li>
@@ -28,14 +38,17 @@
                 </ul>
             </nav>
         </header>
+
+        <!-- ===== This is main section =========== -->
         <main>
             <section class="page-header">
                 <h1>Nigeria Food Recipes</h1>
-                <p>Search, filter and save your favourite dishes</p>
+                <p>Browse authentic Nigeria food recipes, filter, save and plan your meal</p>
             </section>
 
             <section class="filters">
                 <form id="filter-form">
+
                     <div class="filter-group">
                         <label for="search">Search Delicacies<span class="required">*</span></label>
                         <input type="text" id="search" placeholder="Search by name.. E.g (Jollof Rice)" required>
@@ -44,7 +57,7 @@
                     <div class="filter-group">
                         <label for="region">Region</label>
                         <select id="region">
-                            <option value="all">All Regions</option>
+                            <option value="all">All Regions &#9662;</option>
                             <option value="Yoruba">Yoruba</option>
                             <option value="Igbo">Igbo</option>
                             <option value="Hausa">Hausa</option>
@@ -58,7 +71,7 @@
                     <div class="filter-group">
                         <label for="time">Max Time</label>
                         <select id="time">
-                            <option value="all">Any Time</option>
+                            <option value="all">Any Time &#9662;</option>
                             <option value="30">Under 30 mins</option>
                             <option value="45">Under 45 mins</option>
                             <option value="60">Under 60 mins</option>
@@ -71,12 +84,17 @@
 
             <section class="featured">
                 <div class="featured-grid" id="recipes-grid"></div>
-                <button id="toggle-recipes-btn" class="btn-view-all">View All Recipes →</button>
+
+                <button id="toggle-recipes-btn" class="btn-view-all">View All Recipes ⇩</button>
+
                 <p id="no-results">
                     Sorry, no delicacy was found. Try different Food filter.
                 </p>
             </section>
+
         </main>
+
+        <!-- ========== This is my footer =========== -->
         <footer>
             <p>&copy; <span id="current-year"></span> Nigeria Food Recipe Finder • Lagos, Nigeria.</p>
             <p id="lastModified"></p>

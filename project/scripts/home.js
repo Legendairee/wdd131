@@ -5,7 +5,7 @@
 // ============================================
 
 
-// This is all the recipes data (a list of objects)
+// ====This is all the recipes data (a list of objects)=====
 const allRecipes = [
     {
         title: "Jollof Rice",
@@ -94,7 +94,7 @@ const allRecipes = [
     }
 ];
 
-// This is the data for popular meals by region
+// ===== This is the data for popular meals by region ==========
 const allRegions = [
     {
         name: "Yoruba",
@@ -130,11 +130,11 @@ const allRegions = [
     }
 ];
 
-// This control if we show all cards or just a few
+// ======== This control if we show all cards or just a few =======
 let showAllRecipes = false;
 let showAllRegions = false;
 
-// Show the recipe cards on the page
+// ======== This will show the recipe cards on the page ======
 function renderFeatured() {
     const container = document.getElementById('featured-grid');
     if (!container) return;
@@ -175,7 +175,7 @@ function renderFeatured() {
     }).join('');
 }
 
-// Show the region cards on the page
+// ====== This will show the region cards on the page ========
 function renderRegions() {
     const container = document.getElementById('regions-grid');
     if (!container) return;
@@ -196,13 +196,13 @@ function renderRegions() {
     `).join('');
 }
 
-// This will go to the main recipes page
+// ======= This will go to the main recipes page =======
 function goToRecipes() {
     window.location.href = "recipes.html";
 }
 
 
-// This section will show 4 recipes or show all on mobile view 
+// ====== This section will show 4 recipes or show all on mobile view ===== 
 function toggleRecipes() {
     showAllRecipes = !showAllRecipes;
     renderFeatured();
@@ -211,7 +211,7 @@ function toggleRecipes() {
     if (btn) btn.textContent = showAllRecipes ? "Show Less ↑" : "View All Recipes ↓";
 }
 
-// This section will show 4 region or show all on mobile view 
+// ======= This section will show 4 region or show all on mobile view ====== 
 function toggleRegions() {
     showAllRegions = !showAllRegions;
     renderRegions();
@@ -220,7 +220,7 @@ function toggleRegions() {
     if (btn) btn.textContent = showAllRegions ? "Show Less ↑" : "View All Region ↓";
 }
 
-// This section will hide the View All buttons on big screen
+// ======== This section will hide the View All buttons on big screen =======
 function updateViewAllButtons() {
     const isLargeDesktop = window.innerWidth >= 1024;
     const recipeBtn = document.querySelector('.featured .btn-view-all');
@@ -230,7 +230,7 @@ function updateViewAllButtons() {
     if (regionBtn) regionBtn.style.display = isLargeDesktop ? "none" : "block";
 }
 
-// Make the current page link active in the menu
+// ======= Make the current page link active in the menu =====
 function setupActiveNavigation() {
     const navLinks = document.querySelectorAll('.navigation a');
     if (!navLinks.length) return;
@@ -258,7 +258,7 @@ function setupActiveNavigation() {
     });
 }
 
-// Open and close the mobile menu
+// ======== Open and close the mobile menu =======
 function setupMobileMenu() {
     const hamButton = document.querySelector('#menu');
     const navigation = document.querySelector('.navigation');
@@ -272,7 +272,7 @@ function setupMobileMenu() {
     }
 }
 
-// This section put the current year and last modified date in the footer
+// ========= This section put the current year and last modified date in the footer ====
 function updateFooterDates() {
     const currentYear = document.querySelector("#current-year");
     const lastModified = document.querySelector("#lastModified");
@@ -283,7 +283,7 @@ function updateFooterDates() {
 }
 
 
-//This section will start everything when the page finish loading
+// ======== This section will start everything when the page finish loading =======
 document.addEventListener('DOMContentLoaded', () => {
     renderFeatured();
     renderRegions();

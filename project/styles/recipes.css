@@ -29,7 +29,7 @@ body {
     overflow-x: hidden;
 }
 
-/* ======== This is my header and navigation section ======= */
+/* ======== This is the header and navigation section ========= */
 header {
     display: flex;
     position: fixed;
@@ -99,23 +99,22 @@ nav {
     background-color: var(--accent-yellow);
 }
 
+.navigation.open a {
+    display: block;
+}
+
 body:has(.navigation.open) main,
 .navigation ~ main {
     margin-top: 280px;
 }
 
-.navigation.open a {
-    display: block;
-}
-
-/* ========== MAIN CONTENT ========== */
+/* =========== This is my Main section ================== */
 main {
     margin-top: 90px;
     flex: 1;
     padding-bottom: 2rem;
 }
 
-/* Page Header */
 .page-header {
     text-align: center;
     padding: 2.5rem 5% 1rem;
@@ -128,7 +127,9 @@ main {
     margin-bottom: 0.5rem;
 }
 
-/* Filters */
+
+
+/* ========= This is filter section ============= */
 .filters {
     padding: 1.5rem 5%;
     max-width: 1200px;
@@ -157,22 +158,42 @@ main {
     overflow: hidden;
 }
 
+.filter-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.filter-group input,
+.filter-group select {
+    padding: 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+}
+
 .filter-group select {
     width: 100%;
     max-width: 100%;
     min-width: 0;
     overflow: hidden;
+    padding: 0.8rem 2.8rem 0.8rem 0.8rem;
     box-sizing: border-box;
     text-overflow: ellipsis;
     white-space: nowrap;
     appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
 }
 
-.filter-group label {
-    font-weight: 600;
-    font-size: 0.9rem;
+.filter-group input:focus,
+.filter-group select:focus {
+    outline: none;
+    border-color: var(--hover);
+}
+
+.required {
+    color: var(--result);
+    font-weight: bold;
+    margin-left: 4px;
 }
 
 .btn-primary {
@@ -192,29 +213,7 @@ main {
     background-color: var(--hover);
 }
 
-.filter-group input,
-.filter-group select {
-    padding: 0.8rem;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-family: var(--font-body);
-    font-size: 1rem;
-}
-
-.filter-group input:focus,
-.filter-group select:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px var(--accent-focus);
-}
-
-.required {
-    color: var(--result);
-    font-weight: bold;
-    margin-left: 4px;
-}
-
-/* ========== RECIPE CARDS ========== */
+/* ========= This is recipe cards section ============ */
 .featured {
     padding: 2rem 5%;
     max-width: 1200px;
@@ -243,10 +242,6 @@ main {
     border-color: var(--hover);
 }
 
-.recipe-region {
-    font-size: 0.9rem;
-}
-
 .recipe-card img {
     width: 100%;
     height: 200px;
@@ -273,6 +268,10 @@ main {
     font-size: 1.25rem;
     color: var(--primary-green);
     margin: 0;
+}
+
+.recipe-region {
+    font-size: 0.9rem;
 }
 
 .time-badge {
@@ -307,17 +306,20 @@ main {
 .ingredients-container {
     margin: 0.6rem 0 1rem;
     border-top: 1px dashed var(--border);
-    padding-top: 0.8rem;
-    background-color: var(--card-bg);
     padding: 0.8rem;
+    background-color: var(--card-bg);
     border-radius: 6px;
+}
+
+.ingredients-container.hidden {
+    display: none;
 }
 
 .ingredients-title {
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: #666;
+    color: var(--primary-green);
     margin-bottom: 0.6rem;
 }
 
@@ -329,10 +331,6 @@ main {
 .ingredients-list li {
     margin-bottom: 0.4rem;
     line-height: 1.4;
-}
-
-.ingredients-container.hidden {
-    display: none;
 }
 
 .instructions-container {
@@ -362,14 +360,13 @@ main {
 
 .category-name {
     font-weight: 600;
-    color: #333;
+    color: var(--body-text);
 }
 
 .category-items {
     color: #555;
 }
 
-/* Buttons */
 .card-actions {
     display: flex;
     gap: 0.8rem;
@@ -394,7 +391,7 @@ main {
 
 .plan-btn.added {
     background: #51fd99;
-    color: rgb(0, 0, 0)
+    color: rgb(0, 0, 0);
 }
 
 .favorite-btn {
@@ -435,11 +432,17 @@ main {
     color: var(--primary-green);
     padding: 0.9rem 2.5rem;
     border-radius: 50px;
+    font-size: 1rem;
     cursor: pointer;
     font-weight: 500;
 }
 
-/* ========== FOOTER ========== */
+.btn-view-all:hover {
+    background-color: var(--primary-green);
+    color: var(--card-bg);
+}
+
+/* ======= This is my footer ======== */
 footer {
     background-color: var(--primary-green);
     text-align: center;
@@ -455,8 +458,7 @@ footer p {
     color: var(--card-bg);
 }
 
-/* ========== DESKTOP ========== */
-
+/* ========= This is media queries section ========= */
 @media screen and (min-width: 300px) {
     .filters {
         padding: 1rem 0.25rem;
@@ -468,7 +470,6 @@ footer p {
 }
 
 @media screen and (min-width: 600px) {
-
     #menu {
         display: none;
     }
@@ -510,7 +511,7 @@ footer p {
     }
 
     #filter-form button {
-        grid-column: 1/-1;
+        grid-column: 1 / -1;
         justify-self: center;
         width: 50%;
     }
