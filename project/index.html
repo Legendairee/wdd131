@@ -5,9 +5,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description"
-            content="WDD 131 - Dynamic Web Fundamentals by Mathew Udowa Oghenemairo. Personal portfolio showcasing skills in building navigation menu.">
+            content="Discover authentic Nigerian food recipes, regional cuisines, and traditional ingredients. Step-by-step cooking guides for dishes across all regions.">
         <meta name="author" content="Mathew Udowa Oghenemairo">
-        <title>WDD 131 - Dynamic Web Fundamentals - Mathew Udowa Oghenemairo</title>
+        <title>Nigerian Food Recipe Finder</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link
@@ -20,20 +20,21 @@
     </head>
 
     <body>
+        <!-- This is my header and navigation section -->
         <header>
             <img src="./images/nigeria-food-logo.webp" alt="Nigeria Food Recipe Finder Logo" width="120" height="80">
-            <button type="button" id="menu">☰</button>
+            <button type="button" id="menu" aria-label="Toggle Navigation Menu">☰</button>
             <nav>
                 <ul class="navigation">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="recipes.html">Recipes</a></li>
                     <li><a href="kitchen.html">My Kitchen</a></li>
-                    <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
         </header>
+
+        <!-- This is the Main section -->
         <main>
-            <!-- Hero Section using <picture> Tag -->
             <section class="hero">
                 <picture class="hero-bg">
                     <source media="(min-width: 768px)" srcset="./images/recipe-hero.webp">
@@ -43,24 +44,26 @@
 
                 <div class="hero-content">
                     <h1>Discover Nigeria Food Recipe</h1>
-                    <button onclick="goToRecipes()" class="btn-primary">Browse Recipe</button>
+                    <button onclick="goToRecipes()" class="btn-primary">Browse Recipes</button>
                 </div>
             </section>
 
-            <!-- Featured Recipes -->
+            <!-- This is the featured recipes section -->
             <section class="featured">
                 <h2>Featured Cuisine</h2>
                 <div class="featured-grid" id="featured-grid"></div>
                 <button class="btn-view-all">View All Recipes →</button>
             </section>
 
-            <!-- Explore Region -->
+            <!-- This is the regional dishes section -->
             <section class="regions">
-                <h2>Explore Region</h2>
+                <h2>Explore Regions</h2>
                 <div class="regions-grid" id="regions-grid"></div>
-                <button class="btn-view-all">View All Region →</button>
+                <button class="btn-view-all">View All Regions →</button>
             </section>
         </main>
+
+        <!-- This is my footer section -->
         <footer>
             <p>&copy; <span id="current-year"></span> Nigeria Food Recipe Finder • Lagos, Nigeria.</p>
             <p id="lastModified"></p>
@@ -68,4 +71,3 @@
     </body>
 
 </html>
-

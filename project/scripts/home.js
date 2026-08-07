@@ -1,3 +1,11 @@
+// ============================================
+// This file control the homepage of the Nigerian Recipes website.
+// It show recipe cards and region cards and handles the mobile menu,
+// makes the active navigation link work, and updates the footer dates.
+// ============================================
+
+
+// This is all the recipes data (a list of objects)
 const allRecipes = [
     {
         title: "Jollof Rice",
@@ -86,6 +94,7 @@ const allRecipes = [
     }
 ];
 
+// This is the data for popular meals by region
 const allRegions = [
     {
         name: "Yoruba",
@@ -121,12 +130,15 @@ const allRegions = [
     }
 ];
 
+// This control if we show all cards or just a few
 let showAllRecipes = false;
 let showAllRegions = false;
 
+// Show the recipe cards on the page
 function renderFeatured() {
     const container = document.getElementById('featured-grid');
-    // Only show ALL cards automatically if width >= 1024px
+    if (!container) return;
+
     const isLargeDesktop = window.innerWidth >= 1024;
     const displayRecipes = (isLargeDesktop || showAllRecipes) ? allRecipes : allRecipes.slice(0, 4);
 
@@ -163,9 +175,11 @@ function renderFeatured() {
     }).join('');
 }
 
+// Show the region cards on the page
 function renderRegions() {
     const container = document.getElementById('regions-grid');
-    // Only show ALL cards automatically if width >= 1024px
+    if (!container) return;
+
     const isLargeDesktop = window.innerWidth >= 1024;
     const displayRegions = (isLargeDesktop || showAllRegions) ? allRegions : allRegions.slice(0, 4);
 
@@ -182,28 +196,31 @@ function renderRegions() {
     `).join('');
 }
 
+// This will go to the main recipes page
 function goToRecipes() {
     window.location.href = "recipes.html";
 }
 
-// Toggle Functions (Mobile only)
+
+// This section will show 4 recipes or show all on mobile view 
 function toggleRecipes() {
     showAllRecipes = !showAllRecipes;
     renderFeatured();
 
     const btn = document.querySelector('.featured .btn-view-all');
-    if (btn) btn.textContent = showAllRecipes ? "Show Less ↑" : "View All Recipes →";
+    if (btn) btn.textContent = showAllRecipes ? "Show Less ↑" : "View All Recipes ↓";
 }
 
+// This section will show 4 region or show all on mobile view 
 function toggleRegions() {
     showAllRegions = !showAllRegions;
     renderRegions();
 
     const btn = document.querySelector('.regions .btn-view-all');
-    if (btn) btn.textContent = showAllRegions ? "Show Less ↑" : "View All Region →";
+    if (btn) btn.textContent = showAllRegions ? "Show Less ↑" : "View All Region ↓";
 }
 
-// Hide "View All" buttons on Desktop
+// This section will hide the View All buttons on big screen
 function updateViewAllButtons() {
     const isLargeDesktop = window.innerWidth >= 1024;
     const recipeBtn = document.querySelector('.featured .btn-view-all');
@@ -213,47 +230,77 @@ function updateViewAllButtons() {
     if (regionBtn) regionBtn.style.display = isLargeDesktop ? "none" : "block";
 }
 
-const hamButton = document.querySelector('#menu');
-const navigation = document.querySelector('.navigation');
+// Make the current page link active in the menu
+function setupActiveNavigation() {
+    const navLinks = document.querySelectorAll('.navigation a');
+    if (!navLinks.length) return;
 
-if (hamButton && navigation) {
-    hamButton.addEventListener('click', () => {
-        navigation.classList.toggle('open');
-        hamButton.classList.toggle('open');
-
-        if (hamButton.classList.contains('open')) {
-            hamButton.textContent = '✕';
+    let activeFound = false;
+    navLinks.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (linkPath && window.location.pathname.endsWith(linkPath) && linkPath !== "#") {
+            link.classList.add('active');
+            activeFound = true;
         } else {
-            hamButton.textContent = '☰';
+            link.classList.remove('active');
         }
+    });
+
+    if (!activeFound && navLinks[0]) {
+        navLinks[0].classList.add('active');
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function () {
+            navLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+        });
     });
 }
 
-// Initialize
+// Open and close the mobile menu
+function setupMobileMenu() {
+    const hamButton = document.querySelector('#menu');
+    const navigation = document.querySelector('.navigation');
+
+    if (hamButton && navigation) {
+        hamButton.addEventListener('click', () => {
+            navigation.classList.toggle('open');
+            hamButton.classList.toggle('open');
+            hamButton.textContent = hamButton.classList.contains('open') ? '✕' : '☰';
+        });
+    }
+}
+
+// This section put the current year and last modified date in the footer
+function updateFooterDates() {
+    const currentYear = document.querySelector("#current-year");
+    const lastModified = document.querySelector("#lastModified");
+    const today = new Date();
+
+    if (currentYear) currentYear.textContent = today.getFullYear();
+    if (lastModified) lastModified.innerHTML = `Last Modified: ${document.lastModified}`;
+}
+
+
+//This section will start everything when the page finish loading
 document.addEventListener('DOMContentLoaded', () => {
     renderFeatured();
     renderRegions();
     updateViewAllButtons();
+    setupMobileMenu();
+    setupActiveNavigation();
+    updateFooterDates();
 
-    // Attach toggle events (only on mobile)
     const recipeBtn = document.querySelector('.featured .btn-view-all');
     const regionBtn = document.querySelector('.regions .btn-view-all');
 
     if (recipeBtn) recipeBtn.addEventListener('click', toggleRecipes);
     if (regionBtn) regionBtn.addEventListener('click', toggleRegions);
 
-    // Update on resize
     window.addEventListener('resize', () => {
         renderFeatured();
         renderRegions();
         updateViewAllButtons();
     });
 });
-
-const currentYear = document.querySelector("#current-year");
-const lastModified = document.querySelector("#lastModified");
-
-const today = new Date();
-
-if (currentYear) currentYear.textContent = today.getFullYear();
-if (lastModified) lastModified.innerHTML = `Last Modified: ${document.lastModified}`;
