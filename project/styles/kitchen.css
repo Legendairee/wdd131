@@ -1,12 +1,12 @@
 :root {
     --primary-green: #0F4C25;
-    --accent-yellow: #CC7A00;
+    --accent-yellow: #7d4b00;
     --bg-neutral: #FAF9F6;
     --card-bg: #FFFFFF;
-    --text-dark: #222222;
-    --accent-color: #CC7A00;
-    --accent-focus: rgba(226, 182, 6, 0.15);
-    --heading-footer-text: #fff;
+    --hover: #CC7A00;
+    --result: #6c0b00;
+    --body-text: #222222;
+    --border: #ddd;
     --font-heading: 'Playfair Display', Georgia, serif;
     --font-body: 'Poppins', system-ui, sans-serif;
 }
@@ -20,6 +20,7 @@
 body {
     font-family: var(--font-body);
     background-color: var(--bg-neutral);
+    color: var(--body-text);
     line-height: 1.6;
     margin: 0;
     min-height: 100vh;
@@ -28,6 +29,7 @@ body {
     overflow-x: hidden;
 }
 
+/* ======== This is the header and navigation section ========= */
 header {
     display: flex;
     position: fixed;
@@ -39,25 +41,24 @@ header {
     background-color: var(--primary-green);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 0.8rem 1rem;
     align-items: center;
-    border-bottom: 1.5px solid var(--heading-footer-text);
+    border-bottom: 1.5px solid var(--card-bg);
 }
 
 header img {
     width: 120px;
     height: auto;
-    font-weight: 600;
-    font-size: 1.2rem;
     display: block;
 }
 
 #menu {
     border: 0;
-    background: none;
-    color: var(--heading-footer-text);
-    font-size: 30px;
+    background-color: var(--primary-green);
+    color: var(--card-bg);
+    font-size: 26px;
     margin-left: auto;
+    cursor: pointer;
 }
 
 nav {
@@ -68,34 +69,40 @@ nav {
     display: flex;
     position: absolute;
     width: 100%;
-    top: 5.6rem;
-    right: 0;
+    top: 100%;
+    left: 0;
+    padding: 0 20px;
     font-size: 0.9rem;
     flex-direction: column;
-    justify-content: space-around;
     list-style: none;
-    color: var(--heading-footer-text);
+    gap: 10px;
     background-color: var(--primary-green);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navigation a {
     font-family: var(--font-body);
-    display: none;
-    padding: 0.8rem 1.5rem;
+    display: flex;
+    padding: 1rem 1.5rem;
     text-align: center;
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--card-bg);
     font-weight: 500;
-    margin-top: 10px;
+    gap: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.navigation a:hover,
-.navigation a:focus {
-    color: var(--heading-footer-text);
+.navigation a:hover {
+    color: var(--card-bg);
+    background-color: var(--hover);
+}
+
+.navigation a.active {
+    color: var(--card-bg);
     background-color: var(--accent-yellow);
 }
 
-.open a {
+.navigation.open a {
     display: block;
 }
 
@@ -104,9 +111,7 @@ body:has(.navigation.open) main,
     margin-top: 280px;
 }
 
-
-/* ========== Kitchen Page ========== */
-
+/* =========== This is my Main section ================== */
 main {
     margin-top: 90px;
     flex: 1;
@@ -125,11 +130,7 @@ main {
     margin-bottom: 0.5rem;
 }
 
-.page-header p {
-    color: #555;
-}
-
-/* Grid for Meal Plan & Favorites */
+/* ======= This section is recipe grids and cards ====== */
 #meal-plan-grid,
 #favorites-grid,
 #submitted-grid {
@@ -153,20 +154,20 @@ main {
     object-fit: cover;
 }
 
-/* Recipe Card (shared style) */
 .recipe-card {
-    background: #ffffff;
+    background-color: var(--card-bg);
     border-radius: 14px;
     overflow: hidden;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .recipe-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    transform: translateZ(-20px);
+    box-shadow: 0 8px 20px rgba(29, 23, 3, 0.704);
+    border-color: var(--hover);
 }
 
 .recipe-card img {
@@ -183,7 +184,6 @@ main {
     flex-grow: 1;
 }
 
-/* Card Header */
 .card-header {
     display: flex;
     justify-content: space-between;
@@ -200,8 +200,8 @@ main {
 }
 
 .time-badge {
-    background-color: #fff3e0;
-    color: #e65100;
+    background-color: var(--primary-green);
+    color: var(--card-bg);
     font-size: 0.82rem;
     font-weight: 600;
     padding: 0.3rem 0.75rem;
@@ -211,11 +211,11 @@ main {
 
 .recipe-region {
     font-size: 0.95rem;
-    color: #555;
     margin-bottom: 1.2rem;
 }
 
-/* Action Buttons */
+/* ===== This section is card actions and buttons ======= */
+
 .card-actions {
     margin-top: auto;
     display: flex;
@@ -234,38 +234,38 @@ main {
     border: none;
 }
 
-/* Meal Plan Button */
 .plan-btn {
     background-color: var(--primary-green);
-    color: white;
+    color: var(--card-bg);
 }
 
 .plan-btn.added {
-    background-color: #c0392b;
-    /* Red for Remove */
+    background-color: var(--result);
+    color: var(--card-bg);
 }
 
 .plan-btn:hover {
-    opacity: 0.9;
+    background-color: red;
 }
 
-/* Favorite Button */
 .favorite-btn {
-    background: none;
+    background-color: none;
     border: 2px solid var(--accent-yellow);
     color: var(--accent-yellow);
 }
 
 .favorite-btn.saved {
     background-color: var(--accent-yellow);
-    color: white;
+    color: var(--card-bg);
+    border: none;
 }
 
 .favorite-btn:hover {
-    background-color: var(--accent-yellow);
-    color: white;
+    background-color: red;
+    color: var(--card-bg);
 }
 
+/* ===== This is kitchen and messaging section ======  */
 .kitchen-section {
     padding: 2.5rem 5%;
     max-width: 1200px;
@@ -283,7 +283,7 @@ main {
     text-align: center;
     color: #666;
     padding: 1.5rem;
-    background: #f8f8f8;
+    background-color: var(--card-bg);
     border-radius: 10px;
 }
 
@@ -299,9 +299,12 @@ main {
     margin-top: 1rem;
 }
 
-/* Shopping List */
+#form-success {
+    display: none;
+}
+
 #shopping-list {
-    background: white;
+    background-color: var(--card-bg);
     padding: 1.5rem;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
@@ -315,7 +318,7 @@ main {
 
 #shopping-list li {
     padding: 0.5rem 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     gap: 0.6rem;
@@ -325,10 +328,8 @@ main {
     content: "🛒";
 }
 
-
 .shopping-hint {
     margin-bottom: 1rem;
-    color: #555;
     font-size: 0.95rem;
 }
 
@@ -337,22 +338,18 @@ main {
     padding: 0.7rem 0.6rem;
     border-radius: 6px;
     transition: all 0.2s ease;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border);
 }
 
 .shopping-item:hover {
-    background-color: #f0f9f0;
+    background-color: var(--card-bg);
     color: var(--primary-green);
     transform: translateX(5px);
-}
-
-.shopping-item:active {
     background-color: #d4edda;
 }
 
-/* Form */
 .form-section {
-    background: white;
+    background: var(--card-bg);
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
     margin-bottom: 3rem;
@@ -403,7 +400,7 @@ main {
 .form-group select,
 .form-group textarea {
     padding: 0.85rem;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border);
     border-radius: 8px;
     font-family: var(--font-body);
     font-size: 1rem;
@@ -415,7 +412,7 @@ main {
 
 .btn-primary {
     background-color: var(--accent-yellow);
-    color: white;
+    color: var(--card-bg);
     border: none;
     padding: 1rem 2.5rem;
     margin-top: 30px;
@@ -424,10 +421,9 @@ main {
     cursor: pointer;
 }
 
-
 .delete-btn {
-    background-color: #c0392b;
-    color: white;
+    background-color: var(--result);
+    color: var(--card-bg);
     border: none;
     padding: 0.55rem 1.3rem;
     border-radius: 50px;
@@ -438,19 +434,18 @@ main {
 }
 
 .delete-btn:hover {
-    background-color: #a93226;
+    background-color: red;
 }
 
 .instructions-container {
     margin-top: 1rem;
     padding-top: 1rem;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border);
 }
 
 .instructions-title {
     font-size: 0.9rem;
     text-transform: uppercase;
-    color: #666;
     margin-bottom: 0.6rem;
 }
 
@@ -458,8 +453,6 @@ main {
     list-style: none;
     padding-left: 1.2rem;
     font-size: 0.9rem;
-    color: #444;
-    
 }
 
 .instructions-list li {
@@ -476,7 +469,7 @@ main {
     margin-bottom: 0.4rem;
 }
 
-/* ========== FOOTER ========== */
+/* ======= This is my footer ======== */
 footer {
     background-color: var(--primary-green);
     text-align: center;
@@ -489,41 +482,37 @@ footer {
 
 footer p {
     padding: 0.3rem;
-    color: var(--heading-footer-text);
+    color: var(--card-bg);
 }
 
-
-@media screen and (min-width: 768px) {
+/* ========= This is media queries section ========= */
+@media screen and (min-width: 600px) {
 
     .navigation {
+        position: static;
         flex-direction: row;
         width: auto;
         background-color: transparent;
-        top: 1rem;
-        right: 1rem;
-        border-top: none;
+        box-shadow: none;
     }
 
     .navigation a {
-        display: block;
-        font-size: 1.1rem;
-        flex: 1 1 100%;
-        border: none;
-        padding: 0.5rem 0.8rem;
+        display: inline-block;
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
     }
 
-    body:has(.navigation.open) main,
-    .navigation ~ main {
-        margin-top: 50px;
+    #menu {
+        display: none;
     }
-
 
     nav {
         display: block;
     }
 
-    #shopping-list ul {
-        columns: 2;
+    .page-header h1 {
+        font-size: 2.1rem;
     }
 
     .hero h1 {
@@ -531,11 +520,11 @@ footer p {
     }
 
     footer {
-        font-size: 18px;
+        font-size: 16px;
     }
 
-    #menu {
-        display: none;
+    #shopping-list ul {
+        columns: 2;
     }
 
     #meal-plan-grid,

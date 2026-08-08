@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- 
+  ======================================================
+  My Kitchen Page | Nigeria Food Recipe Finder
+  users can find their saved and meal plan, create 
+  personalize meal plan with the recipe shopping list
+  ======================================================
+-->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +24,7 @@
     <script src="scripts/kitchen.js" defer></script>
 </head>
 <body>
+    <!-- ======== This is my Header section with the navigation menu ======== -->
     <header>
         <img src="./images/nigeria-food-logo.webp" alt="Nigeria Food Recipe Finder Logo" width="120" height="80">
         <button type="button" id="menu">☰</button>
@@ -26,13 +36,15 @@
             </ul>
         </nav>
     </header>
+
+    <!-- ===== This is main section =========== -->
     <main>
         <section class="page-header">
             <h1>My Kitchen</h1>
-            <p>Your personal meal plan, favorites and shopping list</p>
+            <p>View Saved favorite and added meal plan, create
+            personalize meal plan with the recipe shopping list.</p>
         </section>
         
-        <!-- Meal Plan Section -->
         <section class="kitchen-section">
             <h2>My Meal Plan</h2>
             <div id="meal-plan-grid" class="featured-grid"></div>
@@ -41,48 +53,50 @@
             </p>
         </section>
         
-        
-        <!-- Favorites Section -->
         <section class="kitchen-section">
             <h2>My Favorite Cuisine</h2>
             <div id="favorites-grid" class="featured-grid"></div>
             <p id="empty-favorites" class="empty-message">
-                You have no favorites yet. Click “♡ Save” on any recipe.
+                You have no favorites yet. Click “♡ Save” on <a href="recipes.html">Recipes</a> page
             </p>
         </section>
         
-        <!-- Shopping List (collected ingredients) -->
         <section class="kitchen-section">
             <h2>Shopping List (Ingredients Needed)</h2>
             <div id="shopping-list"></div>
             <p id="empty-shopping" class="empty-message">
-                No ingredients yet. Add recipes to your Meal Plan first.
+                No ingredients yet. You need to add your Meal Plan first.
             </p>
         </section>
 
-        <!-- Submit New Recipe Form -->
         <section class="kitchen-section form-section">
             <h2>Submit Your Own Recipe</h2>
             <form id="submit-recipe-form">
                 <div class="form-group">
                     <label for="recipe-title">Recipe Title <span class="required">*</span></label>
-                    <input type="text" id="recipe-title" required placeholder="e.g. My Special Jollof">
+                    <input type="text" id="recipe-title" name="recipe-title" required placeholder="e.g. My Special Jollof">
                 </div>
         
                 <div class="form-group">
-                    <label for="recipe-region">Region</label>
-                    <select id="recipe-region">
+                    <label for="recipe-region">Region<span class="required">*</span></label>
+                    <select id="recipe-region" name="recipe-region" required>
+                        <option value="" selected disabled>Pick a Region &#9662;</option>
                         <option value="Yoruba">Yoruba</option>
                         <option value="Igbo">Igbo</option>
                         <option value="Hausa">Hausa</option>
                         <option value="Calabar">Calabar</option>
+                        <option value="Esan Benin">Esan Benin</option>
+                        <option value="Urhobo">Urhobo</option>
+                        <option value="Tiv">Tiv</option>
+                        <option value="Ijaw">Ijaw</option>
+                        <option value="Isoko">Isoko</option>
                         <option value="Other">Other</option>
                     </select>
                 </div>
         
                 <div class="form-group">
                     <label for="recipe-time">Preparation Time (minutes)<span class="required">*</span></label>
-                    <input type="number" id="recipe-time" min="5" required placeholder="45">
+                    <input type="number" id="recipe-time" name="recipe-time" min="5" required placeholder="45">
                 </div>
         
                 <div class="form-group">
@@ -98,10 +112,10 @@
         
                 <button type="submit" class="btn-primary">Submit Recipe</button>
             </form>
-            <p id="form-success" class="success-message" style="display:none;">
+            <p id="form-success" class="success-message">
                 ✓ Your recipe has been saved successfully!
             </p>
-            <!-- User Submitted Recipes -->
+        
             <section class="kitchen-section">
                 <h2>My Submitted Recipes</h2>
                 <div id="submitted-grid" class="featured-grid"></div>
@@ -111,6 +125,8 @@
             </section>
         </section>
     </main>
+
+    <!-- ========== This is my footer =========== -->
     <footer>
         <p>&copy; <span id="current-year"></span> Nigeria Food Recipe Finder • Lagos, Nigeria.</p>
         <p id="lastModified"></p>

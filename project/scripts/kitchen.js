@@ -1,4 +1,5 @@
-// ========== LOCAL STORAGE HELPERS ==========
+
+// ==== These functions for reading and writing to Local Storage ======
 function getMealPlan() {
     return JSON.parse(localStorage.getItem('mealPlan')) || [];
 }
@@ -19,7 +20,35 @@ function saveSubmittedRecipes(recipes) {
     localStorage.setItem('submittedRecipes', JSON.stringify(recipes));
 }
 
-// ========== RENDER MEAL PLAN ==========
+// ====== Make the current page link active in the menu =======
+function setupActiveNavigation() {
+    const navLinks = document.querySelectorAll('.navigation a');
+    if (!navLinks.length) return;
+
+    let activeFound = false;
+    navLinks.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (linkPath && window.location.pathname.endsWith(linkPath) && linkPath !== "#") {
+            link.classList.add('active');
+            activeFound = true;
+        } else {
+            link.classList.remove('active');
+        }
+    });
+
+    if (!activeFound && navLinks[0]) {
+        navLinks[0].classList.add('active');
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function () {
+            navLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+}
+
+// ======= This section handle meal plan grid and removal functionality ======
 function renderMealPlan() {
     const container = document.getElementById('meal-plan-grid');
     const emptyMsg = document.getElementById('empty-meal-plan');
@@ -51,7 +80,6 @@ function renderMealPlan() {
         </div>
     `).join('');
 
-    // Remove from Meal Plan
     document.querySelectorAll('#meal-plan-grid .plan-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const id = Number(e.target.dataset.id);
@@ -63,7 +91,7 @@ function renderMealPlan() {
     });
 }
 
-// ========== SHOPPING LIST ==========
+// ====== This section compiles unique ingredients from active meal plans =======
 function renderShoppingList() {
     const container = document.getElementById('shopping-list');
     const emptyMsg = document.getElementById('empty-shopping');
@@ -99,7 +127,6 @@ function renderShoppingList() {
         </ul>
     `;
 
-    // Make ingredients clickable
     document.querySelectorAll('.shopping-item').forEach(item => {
         item.addEventListener('click', () => {
             addIngredientToTextarea(item.dataset.ingredient);
@@ -107,7 +134,6 @@ function renderShoppingList() {
     });
 }
 
-// ========== ADD INGREDIENT TO TEXTAREA ==========
 function addIngredientToTextarea(ingredient) {
     const textarea = document.getElementById('recipe-ingredients');
     if (!textarea) return;
@@ -118,27 +144,24 @@ function addIngredientToTextarea(ingredient) {
         .map(i => i.trim().toLowerCase())
         .filter(i => i !== '');
 
-    // Prevent duplicates
     if (existing.includes(ingredient.toLowerCase())) {
         textarea.style.borderColor = '#e67e22';
         setTimeout(() => textarea.style.borderColor = '#ddd', 800);
         return;
     }
 
-    // Add with comma
     if (current === '') {
         textarea.value = ingredient;
     } else {
         textarea.value = current + ', ' + ingredient;
     }
 
-    // Visual feedback
     textarea.focus();
     textarea.style.borderColor = '#27ae60';
-    setTimeout(() => textarea.style.borderColor = '#ddd', 1000);
+    setTimeout(() => textarea.style.borderColor = '#ddd', 2000);
 }
 
-// ========== FAVORITES ==========
+// ===== This section handles bookmarked favorite recipes =======
 function renderFavorites() {
     const container = document.getElementById('favorites-grid');
     const emptyMsg = document.getElementById('empty-favorites');
@@ -170,7 +193,6 @@ function renderFavorites() {
         </div>
     `).join('');
 
-    // Remove Favorite
     document.querySelectorAll('#favorites-grid .favorite-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const id = Number(e.target.dataset.id);
@@ -181,7 +203,7 @@ function renderFavorites() {
     });
 }
 
-// ========== RENDER SUBMITTED RECIPES ==========
+// Renders user created recipes with instructions, ingredients and deletion control =====
 function renderSubmittedRecipes() {
     const container = document.getElementById('submitted-grid');
     const emptyMsg = document.getElementById('empty-submitted');
@@ -235,7 +257,6 @@ function renderSubmittedRecipes() {
         </div>
     `).join('');
 
-    // Delete functionality
     document.querySelectorAll('.delete-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const id = Number(e.target.dataset.id);
@@ -248,7 +269,7 @@ function renderSubmittedRecipes() {
     });
 }
 
-// ========== SUBMIT NEW RECIPE ==========
+// ======== This processes new recipe creation and storage ========
 function handleSubmitRecipe(e) {
     e.preventDefault();
 
@@ -275,17 +296,14 @@ function handleSubmitRecipe(e) {
         img: "./images/mobile-recipe-hero.webp"
     };
 
-    // Save submitted recipes
     const submitted = getSubmittedRecipes();
     submitted.push(newRecipe);
     saveSubmittedRecipes(submitted);
 
-    // Also add to meal plan
     const mealPlan = getMealPlan();
     mealPlan.push(newRecipe);
     saveMealPlan(mealPlan);
 
-    // Reset form & show success
     e.target.reset();
     document.getElementById('form-success').style.display = 'block';
 
@@ -293,24 +311,24 @@ function handleSubmitRecipe(e) {
         document.getElementById('form-success').style.display = 'none';
     }, 4000);
 
-    // Refresh all sections
     renderMealPlan();
     renderShoppingList();
     renderSubmittedRecipes();
 }
 
-// ========== INITIALIZE ==========
+// ==== This section is for initialization and event listener =====
 document.addEventListener('DOMContentLoaded', () => {
     renderMealPlan();
     renderShoppingList();
     renderFavorites();
     renderSubmittedRecipes();
+    setupActiveNavigation();
 
     const form = document.getElementById('submit-recipe-form');
     if (form) form.addEventListener('submit', handleSubmitRecipe);
-
 });
 
+// ===== This is mobile navigation menu ======
 const hamButton = document.querySelector('#menu');
 const navigation = document.querySelector('.navigation');
 
@@ -322,6 +340,7 @@ if (hamButton && navigation) {
     });
 }
 
+// ===== footer current year and last modified date =====
 const currentYear = document.querySelector("#current-year");
 const lastModified = document.querySelector("#lastModified");
 
