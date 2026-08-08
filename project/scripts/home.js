@@ -207,7 +207,7 @@ function toggleRecipes() {
     showAllRecipes = !showAllRecipes;
     renderFeatured();
 
-    const btn = document.querySelector('.featured .btn-view-all');
+    const btn = document.querySelector('.featured .view-all-button');
     if (btn) btn.textContent = showAllRecipes ? "Show Less ↑" : "View All Recipes ↓";
 }
 
@@ -216,15 +216,15 @@ function toggleRegions() {
     showAllRegions = !showAllRegions;
     renderRegions();
 
-    const btn = document.querySelector('.regions .btn-view-all');
+    const btn = document.querySelector('.regions .view-all-button');
     if (btn) btn.textContent = showAllRegions ? "Show Less ↑" : "View All Region ↓";
 }
 
 // ======== This section will hide the View All buttons on big screen =======
 function updateViewAllButtons() {
     const isLargeDesktop = window.innerWidth >= 1024;
-    const recipeBtn = document.querySelector('.featured .btn-view-all');
-    const regionBtn = document.querySelector('.regions .btn-view-all');
+    const recipeBtn = document.querySelector('.featured .view-all-button');
+    const regionBtn = document.querySelector('.regions .view-all-button');
 
     if (recipeBtn) recipeBtn.style.display = isLargeDesktop ? "none" : "block";
     if (regionBtn) regionBtn.style.display = isLargeDesktop ? "none" : "block";
@@ -292,8 +292,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setupActiveNavigation();
     updateFooterDates();
 
-    const recipeBtn = document.querySelector('.featured .btn-view-all');
-    const regionBtn = document.querySelector('.regions .btn-view-all');
+    const recipeBtn = document.querySelector('.featured .view-all-button');
+    const regionBtn = document.querySelector('.regions .view-all-button');
 
     if (recipeBtn) recipeBtn.addEventListener('click', toggleRecipes);
     if (regionBtn) regionBtn.addEventListener('click', toggleRegions);

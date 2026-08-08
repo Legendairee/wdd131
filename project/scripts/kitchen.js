@@ -249,7 +249,7 @@ function renderSubmittedRecipes() {
                 ` : ''}
 
                 <div class="card-actions">
-                    <button class="delete-btn" data-id="${r.id}">
+                    <button class="delete-item-button" data-id="${r.id}">
                         Delete Recipe
                     </button>
                 </div>
@@ -257,7 +257,7 @@ function renderSubmittedRecipes() {
         </div>
     `).join('');
 
-    document.querySelectorAll('.delete-btn').forEach(btn => {
+    document.querySelectorAll('.delete-item-button').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const id = Number(e.target.dataset.id);
             if (confirm('Are you sure you want to delete this recipe?')) {

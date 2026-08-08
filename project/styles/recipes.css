@@ -197,7 +197,7 @@ main {
     margin-left: 4px;
 }
 
-.btn-primary {
+.filter-button {
     background-color: var(--accent-yellow);
     color: var(--card-bg);
     border: none;
@@ -210,7 +210,7 @@ main {
     max-width: 100%;
 }
 
-.btn-primary:hover {
+.filter-button:hover {
     background-color: var(--hover);
 }
 
@@ -426,20 +426,20 @@ main {
     font-size: 1.1rem;
 }
 
-.btn-view-all {
+.view-all-button {
     display: block;
     margin: 2.5rem auto 0;
-    background-color: none;
     border: 2px solid var(--primary-green);
     color: var(--primary-green);
     padding: 0.9rem 2.5rem;
     border-radius: 50px;
-    font-size: 1rem;
     cursor: pointer;
     font-weight: 500;
+    font-size: 1.2rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.btn-view-all:hover {
+.view-all-button:hover {
     background-color: var(--primary-green);
     color: var(--card-bg);
 }

@@ -205,7 +205,7 @@ function renderRecipes(recipes) {
     if (toggleBtn) {
         if (!isDesktop && recipes.length > 4) {
             toggleBtn.style.display = 'block';
-            toggleBtn.textContent = showAllRecipes ? "Show Less ⇧" : "View All Recipes ⇩";
+            toggleBtn.textContent = showAllRecipes ? "Show Less ↑" : "View All Recipes ↓";
         } else {
             toggleBtn.style.display = 'none';
         }
@@ -213,7 +213,7 @@ function renderRecipes(recipes) {
 
     container.innerHTML = displayRecipes.map(r => {
         const isInPlan = mealPlan.some(item => item.id === r.id);
-        const isSaved = favorites.some(item => item.id === r.id);  // ← New correct line
+        const isSaved = favorites.some(item => item.id === r.id); 
 
         let ingredientsHTML = '';
         if (r.ingredients) {

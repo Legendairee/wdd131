@@ -410,7 +410,7 @@ main {
     resize: vertical;
 }
 
-.btn-primary {
+.recipe-submit-button {
     background-color: var(--accent-yellow);
     color: var(--card-bg);
     border: none;
@@ -421,7 +421,7 @@ main {
     cursor: pointer;
 }
 
-.delete-btn {
+.delete-item-button {
     background-color: var(--result);
     color: var(--card-bg);
     border: none;
@@ -433,7 +433,7 @@ main {
     transition: background-color 0.2s ease;
 }
 
-.delete-btn:hover {
+.delete-item-button:hover {
     background-color: red;
 }
 
