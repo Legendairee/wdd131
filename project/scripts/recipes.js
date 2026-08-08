@@ -219,7 +219,7 @@ function renderRecipes(recipes) {
         if (r.ingredients) {
             ingredientsHTML = `
                 <div class="ingredients-container hidden" id="ingredients-${r.id}">
-                    <h4 class="ingredients-title">Complete Ingredients</h4>
+                    <h3 class="ingredients-title">Complete Ingredients</h3>
                     <ul class="ingredients-list">
                         ${Object.entries(r.ingredients).map(([category, items]) => `
                             <li>
@@ -236,7 +236,7 @@ function renderRecipes(recipes) {
         if (r.instructions) {
             instructionsHTML = `
                 <div class="instructions-container">
-                    <h4 class="instructions-title">Preparation Steps</h4>
+                    <h3 class="instructions-title">Preparation Steps</h3>
                     <ol class="instructions-list">
                         ${r.instructions.map(step => `<li>${step}</li>`).join('')}
                     </ol>
@@ -249,7 +249,7 @@ function renderRecipes(recipes) {
                 <img src="${r.img}" alt="${r.title}" loading="lazy">
                 <div class="info">
                     <div class="card-header">
-                        <h3>${r.title}</h3>
+                        <h2>${r.title}</h2>
                         <span class="time-badge">⏱️ ${r.time} mins</span>
                     </div>
                     <p class="recipe-region"><strong>Region:</strong> ${r.region}</p>
@@ -300,76 +300,6 @@ function renderRecipes(recipes) {
         });
     });
 }
-
-
-// ===== This will render the submitted recipes ========
-function renderSubmittedRecipes() {
-    const container = document.getElementById('submitted-grid');
-    const emptyMsg = document.getElementById('empty-submitted');
-    const submitted = getSubmittedRecipes();
-
-    if (submitted.length === 0) {
-        container.innerHTML = '';
-        emptyMsg.style.display = 'block';
-        return;
-    }
-
-    emptyMsg.style.display = 'none';
-
-    container.innerHTML = submitted.map(r => `
-        <div class="recipe-card">
-            <img src="${r.img}" alt="${r.title}" loading="lazy">
-            <div class="info">
-                <div class="card-header">
-                    <h3>${r.title}</h3>
-                    <span class="time-badge">⏱️ ${r.time} mins</span>
-                </div>
-                <p class="recipe-region"><strong>Region:</strong> ${r.region}</p>
-
-                <div class="ingredients-container">
-                    <h4 class="ingredients-title">Ingredients</h4>
-                    <ul class="ingredients-list">
-                        ${Object.entries(r.ingredients).map(([category, items]) => `
-                            <li>
-                                <span class="category-name">${category}:</span>
-                                <span class="category-items">${items.join(', ')}</span>
-                            </li>
-                        `).join('')}
-                    </ul>
-                </div>
-
-                ${r.instructions && r.instructions.length > 0 ? `
-                    <div class="instructions-container">
-                        <h4 class="instructions-title">Instructions</h4>
-                        <ol class="instructions-list">
-                            ${r.instructions.map(step => `<li>${step}</li>`).join('')}
-                        </ol>
-                    </div>
-                ` : ''}
-
-                <div class="card-actions">
-                    <button class="delete-btn" data-id="${r.id}">
-                        Delete Recipe
-                    </button>
-                </div>
-            </div>
-        </div>
-    `).join('');
-
-    // ===== This will delete submitted recipe =======
-    document.querySelectorAll('.delete-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const id = Number(e.target.dataset.id);
-            if (confirm('Are you sure you want to delete this recipe?')) {
-                const updated = getSubmittedRecipes().filter(item => item.id !== id);
-                saveSubmittedRecipes(updated);
-                renderSubmittedRecipes();
-            }
-        });
-    });
-}
-
-
 
 // ======== This is the toggle function (mobile) ==========
 function toggleRecipes() {
