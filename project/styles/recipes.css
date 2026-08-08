@@ -397,7 +397,7 @@ main {
 }
 
 .favorite-btn {
-    background-color: none;
+    background-color: var(--card-bg);
     border: 2px solid var(--accent-yellow);
     color: var(--accent-yellow);
     padding: 0.5rem 1.1rem;

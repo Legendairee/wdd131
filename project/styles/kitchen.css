@@ -281,7 +281,6 @@ main {
 
 .empty-message {
     text-align: center;
-    color: #666;
     padding: 1.5rem;
     background-color: var(--card-bg);
     border-radius: 10px;
