@@ -41,7 +41,6 @@ header {
     justify-content: space-between;
     padding: 0.8rem 1rem;
     align-items: center;
-    border-bottom: 1.5px solid var(--card-bg);
 }
 
 header img {
