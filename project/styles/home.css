@@ -186,13 +186,10 @@ h2 {
 /* ======= Featured Recipes section ======= */
 .featured,
 .regions {
-    padding: 3rem 4%;
+    padding: 1rem 4%;
     margin-top: 2rem;
 }
 
-.featured h2 {
-    margin-top: 4rem;
-}
 #featured-grid,
 #regions-grid {
     display: grid;
