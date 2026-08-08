@@ -80,7 +80,7 @@ nav {
 
 .navigation a {
     font-family: var(--font-body);
-    display: flex;
+    display: none;
     padding: 1rem 1.5rem;
     text-align: center;
     text-decoration: none;
