@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- 
-  ======================================================
-  Homepage | Nigeria Food Recipe Finder
-  This page introduces the website, shows featured Nigerian 
-  recipes and popular regional dishes, and allows users to 
-  navigate to the full recipes page.
-  ======================================================
--->
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description"
-            content="Discover authentic Nigerian food recipes, regional cuisines, and traditional ingredients. Step-by-step cooking guides for dishes across all regions.">
+            content="Discover authentic Nigerian food recipes, regional cuisines, and traditional ingredients.">
         <meta name="author" content="Mathew Udowa Oghenemairo">
         <title>Nigerian Food Recipe Finder</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
+        <link rel="preload" as="style"
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap">
+        <link rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap"
-            rel="stylesheet">
-        <link rel="preload" href="./images/recipe-hero.webp" as="image" media="(min-width: 768px)">
-        <link rel="preload" href="./images/mobile-recipe-hero.webp" as="image" media="(max-width: 767px)">
+            media="print" onload="this.media='all'">
+        <noscript>
+            <link rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap">
+        </noscript>
         <link rel="stylesheet" href="styles/home.css">
         <script src="scripts/home.js" defer></script>
     </head>
 
     <body>
-        <!-- This is my header and navigation menu section -->
+
+        <!-- ======== This is my Header section with the navigation menu ======== -->
         <header>
             <img src="./images/nigeria-food-logo.webp" alt="Nigeria Food Recipe Finder Logo" width="120" height="80">
             <button type="button" id="menu" aria-label="Toggle Navigation Menu">☰</button>
@@ -41,7 +39,7 @@
             </nav>
         </header>
 
-        <!-- This is the Main section -->
+        <!-- ===== This is main section =========== -->
         <main>
             <section class="hero">
                 <picture class="hero-bg">
@@ -56,14 +54,12 @@
                 </div>
             </section>
 
-            <!-- This is the featured recipes section -->
             <section class="featured">
                 <h2>Featured Cuisine</h2>
                 <div class="featured-grid" id="featured-grid"></div>
                 <button class="view-all-button">View All Recipes ↓</button>
             </section>
 
-            <!-- This is the regional dishes section -->
             <section class="regions">
                 <h2>Explore Regions</h2>
                 <div class="regions-grid" id="regions-grid"></div>
@@ -71,7 +67,7 @@
             </section>
         </main>
 
-        <!-- This is my footer section -->
+        <!-- ========== This is my footer =========== -->
         <footer>
             <p>&copy; <span id="current-year"></span> Nigeria Food Recipe Finder • Lagos, Nigeria.</p>
             <p id="lastModified"></p>

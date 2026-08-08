@@ -197,6 +197,7 @@ h2 {
     padding: 0 4%;
     margin: 0 auto;
     margin-top: 10px;
+    min-height: 400px;
 }
 
 .recipe-card {
