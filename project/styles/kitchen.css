@@ -113,7 +113,7 @@ body:has(.navigation.open) main,
 
 /* =========== This is my Main section ================== */
 main {
-    margin-top: 90px;
+    margin-top: 150px;
     flex: 1;
     padding-bottom: 2rem;
 }
