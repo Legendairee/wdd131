@@ -5,7 +5,7 @@
 // ============================================
 
 
-// ====This is all the recipes data (a list of objects)=====
+// ==== This is all the recipes data =====
 const allRecipes = [
     {
         title: "Jollof Rice",
@@ -133,6 +133,15 @@ const allRegions = [
 let showAllRecipes = false;
 let showAllRegions = false;
 
+// ===== This delays function execution until rapid window events stop ====
+function debounce(func, delay = 200) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => func.apply(this, args), delay);
+    };
+}
+
 // ======== This section will show the recipe cards on the page ======
 function renderFeatured() {
     const container = document.getElementById('featured-grid');
@@ -141,7 +150,9 @@ function renderFeatured() {
     const isLargeDesktop = window.matchMedia('(min-width: 1024px)').matches;
     const displayRecipes = (isLargeDesktop || showAllRecipes) ? allRecipes : allRecipes.slice(0, 4);
 
-    container.innerHTML = displayRecipes.map(r => {
+    container.innerHTML = displayRecipes.map((r, index) => {
+        const imagePriority = index < 2 ? 'fetchpriority="high"' : 'loading="lazy"';
+
         let ingredientsHTML = '';
         if (r.ingredients) {
             ingredientsHTML = `
@@ -161,7 +172,7 @@ function renderFeatured() {
 
         return `
             <div class="recipe-card">
-                <img src="${r.img}" alt="${r.title}" loading="lazy">
+                <img src="${r.img}" alt="${r.title}" ${imagePriority} width="400" height="300">
                 <div class="info">
                     <div class="card-header">
                         <h3>${r.title}</h3>
@@ -248,13 +259,6 @@ function setupActiveNavigation() {
     if (!activeFound && navLinks[0]) {
         navLinks[0].classList.add('active');
     }
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', function () {
-            navLinks.forEach(l => l.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
 }
 
 // ======== Open and close the mobile menu =======
@@ -296,13 +300,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (recipeBtn) recipeBtn.addEventListener('click', toggleRecipes);
     if (regionBtn) regionBtn.addEventListener('click', toggleRegions);
 
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        if (resizeTimeout) cancelAnimationFrame(resizeTimeout);
-        resizeTimeout = requestAnimationFrame(() => {
-            renderFeatured();
-            renderRegions();
-            updateViewAllButtons();
-        });
-    });
+    window.addEventListener('resize', debounce(() => {
+        renderFeatured();
+        renderRegions();
+        updateViewAllButtons();
+    }, 200));
 });

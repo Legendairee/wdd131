@@ -1,3 +1,8 @@
+// ============================================
+// My Kitchen Page Script
+// Manages meal plans, shopping lists, favorite recipes,
+// custom recipe submissions, and saved items using local storage.
+// ============================================
 
 // ==== These functions for reading and writing to Local Storage ======
 function getMealPlan() {
@@ -39,71 +44,61 @@ function setupActiveNavigation() {
     if (!activeFound && navLinks[0]) {
         navLinks[0].classList.add('active');
     }
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', function () {
-            navLinks.forEach(l => l.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
 }
 
 // ======= This section handle meal plan grid and removal functionality ======
 function renderMealPlan() {
     const container = document.getElementById('meal-plan-grid');
     const emptyMsg = document.getElementById('empty-meal-plan');
+    if (!container) return;
+
     const mealPlan = getMealPlan();
 
     if (mealPlan.length === 0) {
         container.innerHTML = '';
-        emptyMsg.style.display = 'block';
+        if (emptyMsg) emptyMsg.style.display = 'block';
         return;
     }
 
-    emptyMsg.style.display = 'none';
+    if (emptyMsg) emptyMsg.style.display = 'none';
 
-    container.innerHTML = mealPlan.map(r => `
-        <div class="recipe-card">
-            <img src="${r.img}" alt="${r.title}" loading="lazy">
-            <div class="info">
-                <div class="card-header">
-                    <h3>${r.title}</h3>
-                    <span class="time-badge">⏱️ ${r.time} mins</span>
-                </div>
-                <p class="recipe-region"><strong>Region:</strong> ${r.region}</p>
-                <div class="card-actions">
-                    <button class="plan-btn added" data-id="${r.id}">
-                        Remove from Meal Plan
-                    </button>
+    container.innerHTML = mealPlan.map((r, index) => {
+        const imgPriority = index < 2 ? 'fetchpriority="high"' : 'loading="lazy"';
+        return `
+            <div class="recipe-card">
+                <img src="${r.img}" alt="${r.title}" ${imgPriority} width="400" height="300">
+                <div class="info">
+                    <div class="card-header">
+                        <h3>${r.title}</h3>
+                        <span class="time-badge">⏱️ ${r.time} mins</span>
+                    </div>
+                    <p class="recipe-region"><strong>Region:</strong> ${r.region}</p>
+                    <div class="card-actions">
+                        <button class="plan-btn added" data-id="${r.id}">
+                            Remove from Meal Plan
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    `).join('');
-
-    document.querySelectorAll('#meal-plan-grid .plan-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const id = Number(e.target.dataset.id);
-            const updated = getMealPlan().filter(item => item.id !== id);
-            saveMealPlan(updated);
-            renderMealPlan();
-            renderShoppingList();
-        });
-    });
+        `;
+    }).join('');
 }
 
 // ====== This section compiles unique ingredients from active meal plans =======
 function renderShoppingList() {
     const container = document.getElementById('shopping-list');
     const emptyMsg = document.getElementById('empty-shopping');
+    if (!container) return;
+
     const mealPlan = getMealPlan();
 
     if (mealPlan.length === 0) {
         container.innerHTML = '';
-        emptyMsg.style.display = 'block';
+        if (emptyMsg) emptyMsg.style.display = 'block';
         return;
     }
 
-    emptyMsg.style.display = 'none';
+    if (emptyMsg) emptyMsg.style.display = 'none';
 
     const allIngredients = new Set();
     mealPlan.forEach(recipe => {
@@ -126,12 +121,6 @@ function renderShoppingList() {
             `).join('')}
         </ul>
     `;
-
-    document.querySelectorAll('.shopping-item').forEach(item => {
-        item.addEventListener('click', () => {
-            addIngredientToTextarea(item.dataset.ingredient);
-        });
-    });
 }
 
 function addIngredientToTextarea(ingredient) {
@@ -165,108 +154,150 @@ function addIngredientToTextarea(ingredient) {
 function renderFavorites() {
     const container = document.getElementById('favorites-grid');
     const emptyMsg = document.getElementById('empty-favorites');
+    if (!container) return;
+
     const favorites = getFavorites();
 
     if (favorites.length === 0) {
         container.innerHTML = '';
-        emptyMsg.style.display = 'block';
+        if (emptyMsg) emptyMsg.style.display = 'block';
         return;
     }
 
-    emptyMsg.style.display = 'none';
+    if (emptyMsg) emptyMsg.style.display = 'none';
 
-    container.innerHTML = favorites.map(r => `
-        <div class="recipe-card">
-            <img src="${r.img}" alt="${r.title}" loading="lazy">
-            <div class="info">
-                <div class="card-header">
-                    <h3>${r.title}</h3>
-                    <span class="time-badge">⏱️ ${r.time} mins</span>
-                </div>
-                <p class="recipe-region"><strong>Region:</strong> ${r.region}</p>
-                <div class="card-actions">
-                    <button class="favorite-btn saved" data-id="${r.id}">
-                        ♥ Remove Favorite
-                    </button>
+    container.innerHTML = favorites.map((r, index) => {
+        const imgPriority = index < 2 ? 'fetchpriority="high"' : 'loading="lazy"';
+        return `
+            <div class="recipe-card">
+                <img src="${r.img}" alt="${r.title}" ${imgPriority} width="400" height="300">
+                <div class="info">
+                    <div class="card-header">
+                        <h3>${r.title}</h3>
+                        <span class="time-badge">⏱️ ${r.time} mins</span>
+                    </div>
+                    <p class="recipe-region"><strong>Region:</strong> ${r.region}</p>
+                    <div class="card-actions">
+                        <button class="favorite-btn saved" data-id="${r.id}">
+                            ♥ Remove Favorite
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    `).join('');
-
-    document.querySelectorAll('#favorites-grid .favorite-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const id = Number(e.target.dataset.id);
-            const updated = getFavorites().filter(item => item.id !== id);
-            localStorage.setItem('favorites', JSON.stringify(updated));
-            renderFavorites();
-        });
-    });
+        `;
+    }).join('');
 }
 
-// Renders user created recipes with instructions, ingredients and deletion control =====
+// ==== Renders user created recipes with instructions, ingredients and deletion control =====
 function renderSubmittedRecipes() {
     const container = document.getElementById('submitted-grid');
     const emptyMsg = document.getElementById('empty-submitted');
+    if (!container) return;
+
     const submitted = getSubmittedRecipes();
 
     if (submitted.length === 0) {
         container.innerHTML = '';
-        emptyMsg.style.display = 'block';
+        if (emptyMsg) emptyMsg.style.display = 'block';
         return;
     }
 
-    emptyMsg.style.display = 'none';
+    if (emptyMsg) emptyMsg.style.display = 'none';
 
-    container.innerHTML = submitted.map(r => `
-        <div class="recipe-card">
-            <img src="${r.img}" alt="${r.title}" loading="lazy">
-            <div class="info">
-                <div class="card-header">
-                    <h3>${r.title}</h3>
-                    <span class="time-badge">⏱️ ${r.time} mins</span>
-                </div>
-                <p class="recipe-region"><strong>Region:</strong> ${r.region}</p>
-
-                <div class="ingredients-container">
-                    <h4 class="ingredients-title">Ingredients</h4>
-                    <ul class="ingredients-list">
-                        ${Object.entries(r.ingredients).map(([category, items]) => `
-                            <li>
-                                <span class="category-name">${category}:</span>
-                                <span class="category-items">${items.join(', ')}</span>
-                            </li>
-                        `).join('')}
-                    </ul>
-                </div>
-
-                ${r.instructions && r.instructions.length > 0 ? `
-                    <div class="instructions-container">
-                        <h4 class="instructions-title">Instructions</h4>
-                        <ol class="instructions-list">
-                            ${r.instructions.map(step => `<li>${step}</li>`).join('')}
-                        </ol>
+    container.innerHTML = submitted.map((r, index) => {
+        const imgPriority = index < 2 ? 'fetchpriority="high"' : 'loading="lazy"';
+        return `
+            <div class="recipe-card">
+                <img src="${r.img}" alt="${r.title}" ${imgPriority} width="400" height="300">
+                <div class="info">
+                    <div class="card-header">
+                        <h3>${r.title}</h3>
+                        <span class="time-badge">⏱️ ${r.time} mins</span>
                     </div>
-                ` : ''}
+                    <p class="recipe-region"><strong>Region:</strong> ${r.region}</p>
 
-                <div class="card-actions">
-                    <button class="delete-item-button" data-id="${r.id}">
-                        Delete Recipe
-                    </button>
+                    <div class="ingredients-container">
+                        <h4 class="ingredients-title">Ingredients</h4>
+                        <ul class="ingredients-list">
+                            ${Object.entries(r.ingredients).map(([category, items]) => `
+                                <li>
+                                    <span class="category-name">${category}:</span>
+                                    <span class="category-items">${items.join(', ')}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+
+                    ${r.instructions && r.instructions.length > 0 ? `
+                        <div class="instructions-container">
+                            <h4 class="instructions-title">Instructions</h4>
+                            <ol class="instructions-list">
+                                ${r.instructions.map(step => `<li>${step}</li>`).join('')}
+                            </ol>
+                        </div>
+                    ` : ''}
+
+                    <div class="card-actions">
+                        <button class="delete-item-button" data-id="${r.id}">
+                            Delete Recipe
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
+}
 
-    document.querySelectorAll('.delete-item-button').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const id = Number(e.target.dataset.id);
-            if (confirm('Are you sure you want to delete this recipe?')) {
-                const updated = getSubmittedRecipes().filter(item => item.id !== id);
-                saveSubmittedRecipes(updated);
-                renderSubmittedRecipes();
+// ====== This section is One main click listener for all kitchen actions ========
+function setupDelegatedEventListeners() {
+    const mealGrid = document.getElementById('meal-plan-grid');
+    if (mealGrid) {
+        mealGrid.addEventListener('click', (e) => {
+            if (e.target.classList.contains('plan-btn')) {
+                const id = Number(e.target.dataset.id);
+                const updated = getMealPlan().filter(item => item.id !== id);
+                saveMealPlan(updated);
+                renderMealPlan();
+                renderShoppingList();
             }
         });
-    });
+    }
+
+    const shoppingList = document.getElementById('shopping-list');
+    if (shoppingList) {
+        shoppingList.addEventListener('click', (e) => {
+            const item = e.target.closest('.shopping-item');
+            if (item) {
+                addIngredientToTextarea(item.dataset.ingredient);
+            }
+        });
+    }
+
+    const favoritesGrid = document.getElementById('favorites-grid');
+    if (favoritesGrid) {
+        favoritesGrid.addEventListener('click', (e) => {
+            if (e.target.classList.contains('favorite-btn')) {
+                const id = Number(e.target.dataset.id);
+                const updated = getFavorites().filter(item => item.id !== id);
+                localStorage.setItem('favorites', JSON.stringify(updated));
+                renderFavorites();
+            }
+        });
+    }
+
+    const submittedGrid = document.getElementById('submitted-grid');
+    if (submittedGrid) {
+        submittedGrid.addEventListener('click', (e) => {
+            if (e.target.classList.contains('delete-item-button')) {
+                const id = Number(e.target.dataset.id);
+                if (confirm('Are you sure you want to delete this recipe?')) {
+                    const updated = getSubmittedRecipes().filter(item => item.id !== id);
+                    saveSubmittedRecipes(updated);
+                    renderSubmittedRecipes();
+                }
+            }
+        });
+    }
 }
 
 // ======== This processes new recipe creation and storage ========
@@ -305,11 +336,13 @@ function handleSubmitRecipe(e) {
     saveMealPlan(mealPlan);
 
     e.target.reset();
-    document.getElementById('form-success').style.display = 'block';
-
-    setTimeout(() => {
-        document.getElementById('form-success').style.display = 'none';
-    }, 4000);
+    const successMsg = document.getElementById('form-success');
+    if (successMsg) {
+        successMsg.style.display = 'block';
+        setTimeout(() => {
+            successMsg.style.display = 'none';
+        }, 4000);
+    }
 
     renderMealPlan();
     renderShoppingList();
@@ -318,6 +351,7 @@ function handleSubmitRecipe(e) {
 
 // ==== This section is for initialization and event listener =====
 document.addEventListener('DOMContentLoaded', () => {
+    setupDelegatedEventListeners();
     renderMealPlan();
     renderShoppingList();
     renderFavorites();

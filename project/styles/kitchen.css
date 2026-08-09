@@ -418,6 +418,10 @@ main {
     cursor: pointer;
 }
 
+.recipe-submit-button:hover {
+    background-color: var(--primary-green);
+}
+
 .delete-item-button {
     background-color: var(--result);
     color: var(--card-bg);
