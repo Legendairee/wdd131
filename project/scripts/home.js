@@ -130,16 +130,15 @@ const allRegions = [
     }
 ];
 
-// ======== This control if we show all cards or just a few =======
 let showAllRecipes = false;
 let showAllRegions = false;
 
-// ======== This will show the recipe cards on the page ======
+// ======== This section will show the recipe cards on the page ======
 function renderFeatured() {
     const container = document.getElementById('featured-grid');
     if (!container) return;
 
-    const isLargeDesktop = window.innerWidth >= 1024;
+    const isLargeDesktop = window.matchMedia('(min-width: 1024px)').matches;
     const displayRecipes = (isLargeDesktop || showAllRecipes) ? allRecipes : allRecipes.slice(0, 4);
 
     container.innerHTML = displayRecipes.map(r => {
@@ -175,12 +174,12 @@ function renderFeatured() {
     }).join('');
 }
 
-// ====== This will show the region cards on the page ========
+// ====== This section will show the region cards on the page ========
 function renderRegions() {
     const container = document.getElementById('regions-grid');
     if (!container) return;
 
-    const isLargeDesktop = window.innerWidth >= 1024;
+    const isLargeDesktop = window.matchMedia('(min-width: 1024px)').matches;
     const displayRegions = (isLargeDesktop || showAllRegions) ? allRegions : allRegions.slice(0, 4);
 
     container.innerHTML = displayRegions.map(region => `
@@ -222,7 +221,7 @@ function toggleRegions() {
 
 // ======== This section will hide the View All buttons on big screen =======
 function updateViewAllButtons() {
-    const isLargeDesktop = window.innerWidth >= 1024;
+    const isLargeDesktop = window.matchMedia('(min-width: 1024px)').matches;
     const recipeBtn = document.querySelector('.featured .view-all-button');
     const regionBtn = document.querySelector('.regions .view-all-button');
 
@@ -282,7 +281,6 @@ function updateFooterDates() {
     if (lastModified) lastModified.innerHTML = `Last Modified: ${document.lastModified}`;
 }
 
-
 // ======== This section will start everything when the page finish loading =======
 document.addEventListener('DOMContentLoaded', () => {
     renderFeatured();
@@ -298,9 +296,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (recipeBtn) recipeBtn.addEventListener('click', toggleRecipes);
     if (regionBtn) regionBtn.addEventListener('click', toggleRegions);
 
+    let resizeTimeout;
     window.addEventListener('resize', () => {
-        renderFeatured();
-        renderRegions();
-        updateViewAllButtons();
+        if (resizeTimeout) cancelAnimationFrame(resizeTimeout);
+        resizeTimeout = requestAnimationFrame(() => {
+            renderFeatured();
+            renderRegions();
+            updateViewAllButtons();
+        });
     });
 });
