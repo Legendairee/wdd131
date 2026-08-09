@@ -10,8 +10,6 @@
         <title>Nigerian Food Recipe Finder</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="preload" as="style"
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap">
         <link rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap"
             media="print" onload="this.media='all'">
@@ -27,7 +25,8 @@
 
         <!-- ======== This is my Header section with the navigation menu ======== -->
         <header>
-            <img src="./images/nigeria-food-logo.webp" alt="Nigeria Food Recipe Finder Logo" width="120" height="80">
+            <img src="./images/nigeria-food-logo.webp" alt="Nigeria Food Recipe Finder Logo" width="120" height="80"
+                fetchpriority="high">
             <button type="button" id="menu" aria-label="Toggle Navigation Menu">☰</button>
             <nav>
                 <ul class="navigation">
@@ -42,14 +41,14 @@
         <main>
             <section class="hero">
                 <picture class="hero-bg">
-                    <source media="(min-width: 768px)" srcset="./images/recipe-hero.webp">
-                    <img src="./images/mobile-recipe-hero.webp" alt="Nigerian food recipe image" width="700"
-                        height="400" fetchpriority="high">
+                    <source media="(min-width: 768px)" srcset="./images/recipe-hero.webp" type="image/webp">
+                    <img src="./images/mobile-recipe-hero.webp" alt="Nigerian food recipe image" width="700" height="400"
+                        fetchpriority="high">
                 </picture>
-
+            
                 <div class="hero-content">
                     <h1>Discover Nigeria Food Recipe</h1>
-                    <button onclick="goToRecipes()" class="hero-button">Browse Recipes</button>
+                    <button type="button" onclick="goToRecipes()" class="hero-button">Browse Recipes</button>
                 </div>
             </section>
 
