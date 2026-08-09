@@ -53,7 +53,7 @@ header img {
     border: 0;
     background-color: var(--primary-green);
     color: var(--card-bg);
-    font-size: 26px;
+    font-size: 40px;
     margin-left: auto;
     cursor: pointer;
 }
