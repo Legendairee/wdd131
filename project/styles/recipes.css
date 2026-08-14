@@ -442,6 +442,15 @@ main {
     color: var(--card-bg);
 }
 
+/* ===== On small screens, hide cards beyond the 4th; "show-all" reveals them ===== */
+#recipes-grid .recipe-card:nth-child(n+5) {
+    display: none;
+}
+
+#recipes-grid.show-all .recipe-card {
+    display: flex;
+}
+
 /* ======= This is my footer ======== */
 footer {
     background-color: var(--primary-green);
@@ -525,5 +534,16 @@ footer p {
 @media screen and (min-width: 1024px) {
     #recipes-grid {
         grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    /* Desktop layouts always show every card and hide the toggle button */
+    #recipes-grid .recipe-card:nth-child(n+5) {
+        display: flex;
+    }
+
+    #toggle-recipes-btn {
+        display: none;
     }
 }

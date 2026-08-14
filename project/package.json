@@ -1,0 +1,12 @@
+{
+  "name": "nigeria-food-recipe-finder",
+  "version": "1.0.0",
+  "description": "Nigeria Food Recipe Finder — static site (HTML/CSS/JS)",
+  "scripts": {
+    "lh": "lighthouse http://127.0.0.1:8123/index.html --only-categories=performance --output=html,json --output-path=reports/index && lighthouse http://127.0.0.1:8123/recipes.html --only-categories=performance --output=html,json --output-path=reports/recipes && lighthouse http://127.0.0.1:8123/kitchen.html --only-categories=performance --output=html,json --output-path=reports/kitchen"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "lighthouse": "^13.4.1"
+  }
+}

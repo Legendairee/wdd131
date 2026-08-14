@@ -2,97 +2,9 @@
 // This file control the homepage of the Nigerian Recipes website.
 // It show recipe cards and region cards and handles the mobile menu,
 // makes the active navigation link work, and updates the footer dates.
+// Recipe data lives in the shared scripts/data.js file.
 // ============================================
 
-
-// ==== This is all the recipes data =====
-const allRecipes = [
-    {
-        title: "Jollof Rice",
-        time: "60",
-        region: "Every Region",
-        img: "./images/jollof-rice.webp",
-        ingredients: {
-            "Base": ["Tomatoes", "Red bell peppers (tatashe)", "Scotch bonnets (rodo)", "Onions"],
-            "Aromatics": ["Garlic", "Ginger", "Curry powder", "Dried thyme", "Bay leaves"],
-            "Liquid & Fat": ["Cooking oil", "Rich meat stock (beef, goat, or chicken)"]
-        }
-    },
-    {
-        title: "Egusi Soup",
-        time: "45",
-        region: "Every Region",
-        img: "./images/egusi-soup.webp",
-        ingredients: {
-            "Base": ["Ground egusi (melon seeds)", "Palm oil", "Spinach or bitter leaf", "Onions"],
-            "Aromatics": ["Ground crayfish", "Locust beans (iru)", "Bouillon cubes"]
-        }
-    },
-    {
-        title: "Ewedu Soup",
-        time: "25",
-        region: "Yoruba",
-        img: "./images/ewedu-soup.webp",
-        ingredients: {
-            "Base": ["Fresh ewedu leaves (jute leaves)", "Water"],
-            "Aromatics & Seasoning": ["Locust beans (iru)", "Ground crayfish", "Bouillon cube", "Salt"],
-            "Thickener & Texture": ["Edible potash (kanwa)"]
-        }
-    },
-    {
-        title: "Ofe Oha Soup",
-        time: "60",
-        region: "Igbo",
-        img: "./images/ofe-oha.webp",
-        ingredients: {
-            "Base Leaves": ["Fresh Oha leaves", "Uziza leaves (optional)"],
-            "Thickener": ["Cocoyam paste (taro)", "Achi", "Ofo", "Ede"],
-            "Aromatics & Seasoning": ["Red palm oil", "Ground crayfish", "Ogiri Igbo", "Yellow pepper", "Bouillon cubes", "Salt"]
-        }
-    },
-    {
-        title: "Miyan Kuka",
-        time: "35",
-        region: "Hausa",
-        img: "./images/miyan-kuka.webp",
-        ingredients: {
-            "Base Leaf": ["Powdered baobab leaves (kuka)"],
-            "Aromatics & Seasoning": ["Dawadawa", "Ground crayfish", "Scotch bonnet peppers", "Onions", "Bouillon cubes", "Salt"],
-            "Fat": ["Red palm oil or peanut oil"]
-        }
-    },
-    {
-        title: "Afang Soup",
-        time: "70",
-        region: "Calabar",
-        img: "./images/afang-soup.webp",
-        ingredients: {
-            "Base Leaves": ["Fresh Afang leaves (Ukazi)", "Waterleaf"],
-            "Fat & Aromatics": ["Red palm oil", "Ground crayfish", "Scotch bonnet peppers", "Bouillon cubes", "Salt"]
-        }
-    },
-    {
-        title: "Banga Soup",
-        time: "80",
-        region: "Urhobo & Isoko",
-        img: "./images/banga-soup.webp",
-        ingredients: {
-            "Base Extract": ["Palm fruit extract (Banga paste)", "Beletete leaves"],
-            "Banga Spices": ["Banga spice blend (Taiko)", "Oburunbebe stick", "Orima"],
-            "Aromatics & Seasoning": ["Ground crayfish", "Scotch bonnet peppers", "Onions", "Bouillon cubes", "Salt"]
-        }
-    },
-    {
-        title: "Black Soup",
-        time: "45",
-        region: "Esan, Bini",
-        img: "./images/black-soup.webp",
-        ingredients: {
-            "Base Leaves": ["Palm fruit extract", "Fresh scent leaves", "Uziza leaves", "Washed bitter leaf"],
-            "Aromatics & Seasoning": ["Red palm oil", "Ground crayfish", "Scotch bonnet peppers", "Onions", "Bouillon cubes", "Salt"]
-        }
-    }
-];
 
 // ===== This is the data for popular meals by region ==========
 const allRegions = [
@@ -133,24 +45,14 @@ const allRegions = [
 let showAllRecipes = false;
 let showAllRegions = false;
 
-// ===== This delays function execution until rapid window events stop ====
-function debounce(func, delay = 200) {
-    let timer;
-    return (...args) => {
-        clearTimeout(timer);
-        timer = setTimeout(() => func.apply(this, args), delay);
-    };
-}
-
 // ======== This section will show the recipe cards on the page ======
+// Every card is rendered once; CSS hides the extras on small screens
+// and the "show-all" class reveals them (see home.css).
 function renderFeatured() {
     const container = document.getElementById('featured-grid');
     if (!container) return;
 
-    const isLargeDesktop = window.matchMedia('(min-width: 1024px)').matches;
-    const displayRecipes = (isLargeDesktop || showAllRecipes) ? allRecipes : allRecipes.slice(0, 4);
-
-    container.innerHTML = displayRecipes.map((r, index) => {
+    container.innerHTML = allRecipes.map((r, index) => {
         const imagePriority = index < 2 ? 'fetchpriority="high"' : 'loading="lazy"';
 
         let ingredientsHTML = '';
@@ -190,10 +92,7 @@ function renderRegions() {
     const container = document.getElementById('regions-grid');
     if (!container) return;
 
-    const isLargeDesktop = window.matchMedia('(min-width: 1024px)').matches;
-    const displayRegions = (isLargeDesktop || showAllRegions) ? allRegions : allRegions.slice(0, 4);
-
-    container.innerHTML = displayRegions.map(region => `
+    container.innerHTML = allRegions.map(region => `
         <div class="region-card">
             <h3 class="region-title">${region.name}</h3>
             <div class="region-meals-container">
@@ -211,33 +110,27 @@ function goToRecipes() {
     window.location.href = "recipes.html";
 }
 
-
-// ====== This section will show 4 recipes or show all on mobile view ===== 
+// ====== This section will show 4 recipes or show all on mobile view =====
+// Toggling only flips a CSS class, so the DOM is not rebuilt.
 function toggleRecipes() {
-    showAllRecipes = !showAllRecipes;
-    renderFeatured();
+    const container = document.getElementById('featured-grid');
+    if (!container) return;
+
+    showAllRecipes = container.classList.toggle('show-all');
 
     const btn = document.querySelector('.featured .view-all-button');
     if (btn) btn.textContent = showAllRecipes ? "Show Less ↑" : "View All Recipes ↓";
 }
 
-// ======= This section will show 4 region or show all on mobile view ====== 
+// ======= This section will show 4 region or show all on mobile view ======
 function toggleRegions() {
-    showAllRegions = !showAllRegions;
-    renderRegions();
+    const container = document.getElementById('regions-grid');
+    if (!container) return;
+
+    showAllRegions = container.classList.toggle('show-all');
 
     const btn = document.querySelector('.regions .view-all-button');
     if (btn) btn.textContent = showAllRegions ? "Show Less ↑" : "View All Region ↓";
-}
-
-// ======== This section will hide the View All buttons on big screen =======
-function updateViewAllButtons() {
-    const isLargeDesktop = window.matchMedia('(min-width: 1024px)').matches;
-    const recipeBtn = document.querySelector('.featured .view-all-button');
-    const regionBtn = document.querySelector('.regions .view-all-button');
-
-    if (recipeBtn) recipeBtn.style.display = isLargeDesktop ? "none" : "block";
-    if (regionBtn) regionBtn.style.display = isLargeDesktop ? "none" : "block";
 }
 
 // ======= Make the current page link active in the menu =====
@@ -282,14 +175,13 @@ function updateFooterDates() {
     const today = new Date();
 
     if (currentYear) currentYear.textContent = today.getFullYear();
-    if (lastModified) lastModified.innerHTML = `Last Modified: ${document.lastModified}`;
+    if (lastModified) lastModified.textContent = `Last Modified: ${document.lastModified}`;
 }
 
-// ======== This section will start everything when the page finish loading =======
+// ======== This section will start everything when the page finish loading ========
 document.addEventListener('DOMContentLoaded', () => {
     renderFeatured();
     renderRegions();
-    updateViewAllButtons();
     setupMobileMenu();
     setupActiveNavigation();
     updateFooterDates();
@@ -299,10 +191,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (recipeBtn) recipeBtn.addEventListener('click', toggleRecipes);
     if (regionBtn) regionBtn.addEventListener('click', toggleRegions);
-
-    window.addEventListener('resize', debounce(() => {
-        renderFeatured();
-        renderRegions();
-        updateViewAllButtons();
-    }, 200));
 });

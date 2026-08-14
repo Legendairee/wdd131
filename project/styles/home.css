@@ -373,6 +373,17 @@ h2 {
     color: var(--card-bg);
 }
 
+/* ===== On small screens, hide cards beyond the 4th; "show-all" reveals them ===== */
+#featured-grid .recipe-card:nth-child(n+5),
+#regions-grid .region-card:nth-child(n+5) {
+    display: none;
+}
+
+#featured-grid.show-all .recipe-card,
+#regions-grid.show-all .region-card {
+    display: flex;
+}
+
 /* ======= This is my footer section ====== */
 footer {
     background-color: var(--primary-green);
@@ -441,5 +452,15 @@ footer p {
     #featured-grid,
     #regions-grid {
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Large screens always show every card and hide the toggle buttons */
+    #featured-grid .recipe-card:nth-child(n+5),
+    #regions-grid .region-card:nth-child(n+5) {
+        display: flex;
+    }
+
+    .view-all-button {
+        display: none;
     }
 }

@@ -15,17 +15,14 @@
     <meta name="description" content="Your personal kitchen - saved recipes, meal plan and shopping list.">
     <meta name="author" content="Mathew Udowa Oghenemairo">
     <title>My Kitchen | Nigeria Food Recipe Finder</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap"
-        media="print" onload="this.media='all'">
-    <noscript>
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap">
-    </noscript>
+    <!-- Preload the self-hosted latin webfonts so they arrive before first paint -->
+    <link rel="preload" as="font" type="font/woff2" href="fonts/poppins-400.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="fonts/poppins-600.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="fonts/playfair-display.woff2" crossorigin>
+    <link rel="stylesheet" href="styles/fonts.css">
+    <link rel="icon" href="data:,">
     <link rel="stylesheet" href="styles/kitchen.css">
-    <script src="scripts/kitchen.js" defer></script>
+    <script src="scripts/kitchen.js" defer fetchpriority="high"></script>
 </head>
 <body>
     <!-- ======== This is my Header section with the navigation menu ======== -->

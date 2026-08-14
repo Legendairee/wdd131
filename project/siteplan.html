@@ -8,13 +8,14 @@
             content="Official site plan for the Nigeria Food Recipe Finder project by Mathew Udowa Oghenemairo for WDD 131 | Dynamic Web Fundamentals">
         <meta name="author" content="Mathew Udowa Oghenemairo">
         <title>Mathew Udowa Oghenemairo Site Plan</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap"
-            rel="stylesheet">
+        <!-- Preload the self-hosted latin webfonts so they arrive before first paint -->
+        <link rel="preload" as="font" type="font/woff2" href="fonts/poppins-400.woff2" crossorigin>
+        <link rel="preload" as="font" type="font/woff2" href="fonts/poppins-600.woff2" crossorigin>
+        <link rel="preload" as="font" type="font/woff2" href="fonts/playfair-display.woff2" crossorigin>
+        <link rel="stylesheet" href="styles/fonts.css">
+        <link rel="icon" href="data:,">
         <link rel="stylesheet" href="styles/site-plan.css">
-        <script src="scripts/site-plan.js" defer></script>
+        <script src="scripts/site-plan.js" defer fetchpriority="high"></script>
     </head>
 
     <body>

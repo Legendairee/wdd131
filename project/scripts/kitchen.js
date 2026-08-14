@@ -379,4 +379,4 @@ const currentYear = document.querySelector("#current-year");
 const lastModified = document.querySelector("#lastModified");
 
 if (currentYear) currentYear.textContent = new Date().getFullYear();
-if (lastModified) lastModified.innerHTML = `Last Modified: ${document.lastModified}`;
+if (lastModified) lastModified.textContent = `Last Modified: ${document.lastModified}`;

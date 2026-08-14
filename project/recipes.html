@@ -14,17 +14,18 @@
         <meta name="description" content="Browse authentic Nigerian recipes for Jollof, Egusi, Afang and more.">
         <meta name="author" content="Mathew Udowa Oghenemairo">
         <title>Recipes | Nigeria Food Recipe Finder</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap"
-            media="print" onload="this.media='all'">
-        <noscript>
-            <link rel="stylesheet"
-                href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap">
-        </noscript>
+        <!-- Preload the self-hosted latin webfonts so they arrive before first paint -->
+        <link rel="preload" as="font" type="font/woff2" href="fonts/poppins-400.woff2" crossorigin>
+        <link rel="preload" as="font" type="font/woff2" href="fonts/poppins-600.woff2" crossorigin>
+        <link rel="preload" as="font" type="font/woff2" href="fonts/playfair-display.woff2" crossorigin>
+        <link rel="stylesheet" href="styles/fonts.css">
+        <!-- Preload the page scripts so they execute before first paint, not after -->
+        <link rel="preload" as="script" href="scripts/data.js" fetchpriority="high">
+        <link rel="preload" as="script" href="scripts/recipes.js" fetchpriority="high">
+        <link rel="icon" href="data:,">
         <link rel="stylesheet" href="styles/recipes.css">
-        <script src="scripts/recipes.js" defer></script>
+        <script src="scripts/data.js" defer fetchpriority="high"></script>
+        <script src="scripts/recipes.js" defer fetchpriority="high"></script>
     </head>
 
     <body>
